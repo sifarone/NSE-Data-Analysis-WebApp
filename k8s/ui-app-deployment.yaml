@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: ui-app-deployment
+spec:
+  replicas: 1
+  selector:
+      matchLabels:
+          component: ui-app
+  template:
+      metadata:
+          labels:
+              component: ui-app
+      spec:
+          containers:
+            - name: client
+              #image: sifarone/eod_analysis:ui-react-app-1.0
+              image: sifarone/eod_analysis:ui-react-app-HTTPS-2.0
+              ports:
+                - containerPort: 80

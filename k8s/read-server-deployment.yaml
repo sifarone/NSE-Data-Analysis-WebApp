@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: read-server-deployment
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+          component: backend-read-server
+    template:
+        metadata:
+            labels:
+                component: backend-read-server
+        spec:
+            containers:
+              - name: read-server
+                image: sifarone/eod_analysis:read-server-2.0
+                #image: sifarone/eod_analysis:read-server-debug-2.0
+                ports:
+                    - containerPort: 60000
+                env:
+                  - name: MONGODB_HOST
+                    value: mongodb-cluster-ip-service
+                  - name: MONGODB_PORT
+                    value: '27017'
+                  - name: REDIS_HOST
+                    value: redis-cluster-ip-service
+                  - name: REDIS_PORT
+                    value: '6379'
+                  - name: READ_SERVER_HOST
+                    value: '0.0.0.0'
+                  - name: READ_SERVER_PORT
+                    value: '60000'
+
+            imagePullSecrets:
+              - name: regcred

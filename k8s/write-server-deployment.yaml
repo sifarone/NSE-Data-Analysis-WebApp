@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: write-server-deployment
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+          component: backend-write-server
+    template:
+        metadata:
+            labels:
+                component: backend-write-server
+        spec:
+            volumes:
+              - name: write-server-storage
+                persistentVolumeClaim:
+                  claimName: write-server-persistent-volume-claim
+            containers:
+              - name: write-server
+                image: sifarone/eod_analysis:write-server-2.0
+                #image: sifarone/eod_analysis:write-server-debug-2.2
+                ports:
+                    - containerPort: 50000
+                env:
+                  - name: MONGODB_HOST
+                    value: mongodb-cluster-ip-service
+                  - name: MONGODB_PORT
+                    value: '27017'
+                  - name: REDIS_HOST
+                    value: redis-cluster-ip-service
+                  - name: REDIS_PORT
+                    value: '6379'
+                  - name: WRITE_SERVER_HOST
+                    value: '0.0.0.0'
+                  - name: WRITE_SERVER_PORT
+                    value: '50000'
+                volumeMounts:
+                  - name: write-server-storage
+                    mountPath: ./data
+
+            imagePullSecrets:
+              - name: regcred

@@ -1,0 +1,50 @@
+version: '3'
+services:
+  redis:
+    image: 'redis:latest'
+    volumes:
+      - /home/trash/codes/python/dockerRedisDumps:/var/etc/redis
+
+  mongodb:
+    image: 'mongo:4.0.10'
+    volumes:
+      - /home/trash/codes/python/dockerDB_Backup:/db_backups
+      - /home/trash/codes/python/dockerMongoDB:/data/db
+  
+  reader:
+    build:
+      dockerfile: Dockerfile
+      context: ./reader
+    volumes:
+      - ./reader:/server
+    environment:
+      - MONGODB_HOST=mongodb
+      - MONGODB_PORT=27017      
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - HOST=reader
+    ports:
+      - '60000:60000'
+
+  writer:
+    build:
+      dockerfile: Dockerfile
+      context: ./writer
+    volumes:
+      - ./writer:/server
+      - /home/trash/codes/python/dockerCSVData:/server/data
+    environment:
+      - MONGODB_HOST=mongodb
+      - MONGODB_PORT=27017      
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - HOST=writer
+    ports:
+      - '50000:50000'
+
+  nginxui:
+    build:
+      dockerfile: Dockerfile
+      context: ./ui_app
+    ports:
+      - '8080:80'

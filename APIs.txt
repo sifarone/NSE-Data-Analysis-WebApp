@@ -1,0 +1,131 @@
+
+WRITE APIs: ----------------------------------------------------------------------------------------------------------
+
+Cash:
+http://127.0.0.1:50000/api/write/cash/data?source=nsetools    -> giving ERROR :  list index out of range
+http://127.0.0.1:50000/api/write/cash/data?source=csv&checks=yes
+
+
+ANALYTICS APIs:
+
+
+READ APIs: ----------------------------------------------------------------------------------------------------------
+
+
+
+
+#################################################################################################################
+POST Request for chart
+
+http://127.0.0.1:60000/api/post/charting
+
+{
+	"symbol"		: "SBIN",
+	"startDate"	    : "01-Jul-2019",
+	"date"			: "23-Jul-2019",
+	"charts"		: ["chart1"],
+	"chart1"		: {
+		"sourceList"	: ["cash"],
+		"cash"			: ["date", "closePrice", "delivPer"]
+	}
+}
+
+
+{
+	"symbol"		: "SBIN",
+	"startDate"		: "01-Jul-2019",
+	"date"			: "23-Jul-2019",
+	"charts"		: ["chart1", "chart2"],
+	"chart1"		: {
+		"sourceList"	: ["cash"],
+		"cash"			: ["date", "closePrice", "delivPer"]
+	},
+	"chart2"		: {
+		"sourceList"	: ["cash"],
+		"cash"			: ["date", "openPrice", "closePrice"]
+	}
+}
+
+{
+	"symbol"		: "SBIN",
+	"startDate"	    : "01-Jul-2019",
+    "expiryDate"    : "25-Jul-2019",
+    "strikePrice"   : "350",
+	"date"			: "23-Jul-2019",
+	"charts"		: ["chart_cash", "chart_pe_oivsdoi", "chart_ce_oivsdoi"],
+	"chart_cash"		: {
+		"sourceList"	: ["cash"],
+		"cash"			: ["date", "closePrice", "delivPer"]
+	},
+	"chart_pe_oivsdoi"		: {
+		"sourceList"			: ["put_stkOptOIvsDeltaOI"],
+		"put_stkOptOIvsDeltaOI"	: ["date", "strikePrice", "stkOptOpenInterest", "stkOptChangeInOpenInterest"]
+	},
+	"chart_ce_oivsdoi"			: {
+		"sourceList"				: ["call_stkOptOIvsDeltaOI"],
+		"call_stkOptOIvsDeltaOI"	: ["date", "strikePrice", "stkOptOpenInterest", "stkOptChangeInOpenInterest"]
+	}
+}
+
+
+{
+	"symbol"				: "SBIN",
+	"startDate"	    		: "01-Jul-2019",
+    "stkOptExpiryDate" 		: "25-Jul-2019",
+    "idxOptExpiryDate"		: "18-Jul-2019",
+    "strikePrice"   		: "350",
+	"date"					: "23-Jul-2019",
+	"charts"			: ["chart_cash", "stk_pe_oivsdoi", "stk_ce_oivsdoi", "idx_pe_oivsdoi", "idx_ce_oivsdoi"],
+	"chart_cash"		: {
+		"sourceList"	: ["cash"],
+		"cash"			: ["date", "closePrice", "delivPer"]
+	},
+	"stk_pe_oivsdoi"		: {
+		"sourceList"			: ["put_stkOptOIvsDeltaOI"],
+		"put_stkOptOIvsDeltaOI"	: ["date", "strikePrice", "stkOptOpenInterest", "stkOptChangeInOpenInterest"]
+	},
+	"stk_ce_oivsdoi"			: {
+		"sourceList"				: ["call_stkOptOIvsDeltaOI"],
+		"call_stkOptOIvsDeltaOI"	: ["date", "strikePrice", "stkOptOpenInterest", "stkOptChangeInOpenInterest"]
+	},
+		"idx_pe_oivsdoi"			: {
+		"sourceList"				: ["put_idxOptOIvsDeltaOI"],
+		"put_idxOptOIvsDeltaOI"	: ["date", "strikePrice", "stkOptOpenInterest", "stkOptChangeInOpenInterest"]
+	},
+		"idx_ce_oivsdoi"			: {
+		"sourceList"				: ["call_idxOptOIvsDeltaOI"],
+		"call_idxOptOIvsDeltaOI"	: ["date", "strikePrice", "stkOptOpenInterest", "stkOptChangeInOpenInterest"]
+	}
+}
+
+
+{
+	"symbol"					: "NIFTY",
+    "idxOptExpiryDate"			: "18-Jul-2019",
+	"date"						: "17-Jul-2019",
+	"charts"					: ["idx_pe_oivsdoi", "idx_ce_oivsdoi"],
+	"idx_pe_oivsdoi"			: {
+		"sourceList"				: ["put_idxOptOIvsDeltaOI"],
+		"put_idxOptOIvsDeltaOI"	: ["date", "strikePrice", "idxOptOpenInterest", "idxOptChangeInOpenInterest"]
+	},
+	"idx_ce_oivsdoi"			: {
+		"sourceList"				: ["call_idxOptOIvsDeltaOI"],
+		"call_idxOptOIvsDeltaOI"	: ["date", "strikePrice", "idxOptOpenInterest", "idxOptChangeInOpenInterest"]
+	}
+}
+
+{
+	"symbol"					: "SBIN",
+    "stkOptExpiryDate"			: "25-Jul-2019",
+	"date"						: "17-Jul-2019",
+	"charts"					: ["stockOptions"],
+	"stockOptions"				: {
+		"sourceList"			: ["stkOptByDate"],
+		"stkOptByDate"			: []
+	}
+}
+
+##################################################################################################
+
+http://192.168.18.9:50000/api/write/cash/data?source=csv&checks=yes
+http://192.168.18.9:50000/api/write/fno/data?source=csv

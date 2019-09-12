@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+    name: write-server-cluster-ip-service
+spec:
+  type: ClusterIP
+  selector:
+      component: backend-write-server
+  ports:
+    - port: 50000
+      targetPort: 50000
