@@ -119,8 +119,8 @@ class LoadArchivedIndexDataFromCsv:
         data = self.csvData.getArchivedIndicesFlatData()
         for row in data:
             dailyData = {
-                #'date'          : parser.parse(str(row['date']).strip()),  # as a gatetime.date() object
-                'date'          : datetime.strptime(str(row['date']).strip(), dateFormatString),
+                'date'          : parser.parse(str(row['date']).strip()),  # as a gatetime.date() object
+                #'date'          : datetime.strptime(str(row['date']).strip(), dateFormatString),
                 'openValue'     : float(row['openValue'] if (utils.is_number(row['openValue'])) else '0.0'),
                 'highValue'     : float(row['highValue'] if (utils.is_number(row['highValue'])) else '0.0'),
                 'lowValue'      : float(row['lowValue'] if (utils.is_number(row['lowValue'])) else '0.0'),
@@ -157,8 +157,8 @@ class LoadArchivedIndexDataFromCsv:
         data = self.csvData.getArchivedIndicesFlatData()
         for row in data:
             dailyData = {
-                #'date'          : parser.parse(str(row['date']).strip()),  # as a gatetime.date() object
-                'date'          : datetime.strptime(str(row['date']).strip(), dateFormatString),
+                'date'          : parser.parse(str(row['date']).strip()),  # as a gatetime.date() object
+                #'date'          : datetime.strptime(str(row['date']).strip(), dateFormatString),
                 'openValue'     : float(row['openValue'] if (utils.is_number(row['openValue'])) else '0.0'),
                 'highValue'     : float(row['highValue'] if (utils.is_number(row['highValue'])) else '0.0'),
                 'lowValue'      : float(row['lowValue'] if (utils.is_number(row['lowValue'])) else '0.0'),
