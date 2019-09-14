@@ -25,6 +25,7 @@ import StkOptionChainMenu from './StkOptionChainMenu';
 import IdxOptionChainMenu from './IdxOptionChainMenu';
 import ChartStkOptionChain from './ChartStkOptionChain';
 import ChartIdxOptionChain from './ChartIdxOptionChain';
+import SigninPage from '../SigninPage';
 
 import AdminMain from '../../components/admin/AdminMain';
 
@@ -296,9 +297,9 @@ const ChartAppMain = () => {
         </div>
       )
     }
-    else if (section === 'admin') {
+    else if (section === 'signIn') {
       return (
-        <AdminMain />
+        <SigninPage />
       )
     }
     else {
@@ -311,12 +312,8 @@ const ChartAppMain = () => {
   }
 
   // Display Admin page ----------------------------------------------------------------------
-  const showAdmin = () => {
-    console.log('showAdmin: isLoggedIn | is Admin > ', isLoggedIn, isAdmin);
-
-    if (isLoggedIn === true && isAdmin === true) {
-      setSection('admin');
-    }
+  const showSignInPage = () => {
+    setSection('signIn')    
   }
 
   // The main chart component ----------------------------------------------------------------------
@@ -331,7 +328,7 @@ const ChartAppMain = () => {
           <Typography variant="h6" noWrap>
             EOD Analysis (Beta V1.1)
           </Typography>
-          <Button color="inherit" style={{marginRight: -12, marginLeft: "auto"}} onClick={() => showAdmin()}>Admin</Button>
+          <Button color="inherit" style={{marginRight: -12, marginLeft: "auto"}} onClick={() => showSignInPage()}>Sign In</Button>
         </Toolbar>
       </AppBar>
 

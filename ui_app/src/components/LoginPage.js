@@ -70,7 +70,7 @@ export default function LoginPage() {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Sign in
+          Admin Sign in
         </Typography>
           <TextField
             variant="outlined"

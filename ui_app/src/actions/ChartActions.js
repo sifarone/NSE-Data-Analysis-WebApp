@@ -147,12 +147,12 @@ export const indexDataChartAction = (symbol) => {
 
         const query_data = {
             symbol                  : symbol,
-            startDate	    		: "01-Jan-2019",
+            startDate	    		: "",
             stkOptExpiryDate 	    : "18-Jul-2019",
             idxOptExpiryDate	    : "18-Jul-2019",
             stkFutExpiryDate	    : "18-Jul-2019",
-            strikePrice   		    : 100,
-            date					: "18-Jul-2019",
+            strikePrice   		    : 0,
+            date					: "",
             charts  			    : ["indexData"],           
             indexData     : {
               sourceList			: ["index"],
