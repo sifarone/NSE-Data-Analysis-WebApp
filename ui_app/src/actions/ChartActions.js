@@ -1,6 +1,7 @@
 import { 
     CashDataAPI,
     CashStockSymbolListAPI,
+    IndexSymbolListAPI,
     FnOStockSymbolListAPI,
     FnOIndexSymbolListAPI,
     StockOptionInfoAPI,
@@ -14,6 +15,9 @@ export const initialDataChartAction = () => {
     return async function(dispatch, getState) {
 
         const cashStockSymbolListJson =  await fetch(CashStockSymbolListAPI, {
+            method: 'GET'
+        })
+        const indexSymbolListJson =  await fetch(IndexSymbolListAPI, {
             method: 'GET'
         })
         const fnoStockSymbolListJson =  await fetch(FnOStockSymbolListAPI, {
@@ -36,6 +40,7 @@ export const initialDataChartAction = () => {
         })
 
         console.log('cashStockSymbolListJson: ', cashStockSymbolListJson.status)
+        console.log('indexSymbolListJson: ', indexSymbolListJson.status)
         console.log('fnoStockSymbolListJson: ', fnoStockSymbolListJson.status)
         console.log('fnoIndexSymbolListJson: ', fnoIndexSymbolListJson.status)
         console.log('stkOptInfoJson: ', stkOptInfoJson.status)
@@ -44,6 +49,7 @@ export const initialDataChartAction = () => {
         console.log('idxFutInfoJson: ', idxFutInfoJson.status)
 
         let cashStockSymbolList = []
+        let indexSymbolList = []
         let fnoStockSymbolList = []
         let fnoIndexSymbolList = []
         let stkOptInfo = {}
@@ -52,6 +58,7 @@ export const initialDataChartAction = () => {
         let idxFutInfo = {}
 
         if (cashStockSymbolListJson === 500
+            || indexSymbolListJson === 500
             || fnoStockSymbolListJson.status === 500
             || fnoIndexSymbolListJson.status === 500
             || stkOptInfoJson.status === 500 
@@ -62,6 +69,7 @@ export const initialDataChartAction = () => {
         }
         else {
             cashStockSymbolList = await cashStockSymbolListJson.json()
+            indexSymbolList     = await indexSymbolListJson.json()
             fnoStockSymbolList  = await fnoStockSymbolListJson.json()
             fnoIndexSymbolList  = await fnoIndexSymbolListJson.json()
             stkOptInfo          = await stkOptInfoJson.json()
@@ -71,6 +79,7 @@ export const initialDataChartAction = () => {
         }
 
         console.log('cashStockSymbolList: ', cashStockSymbolList)
+        console.log('indexSymbolList: ', indexSymbolList)
         console.log('fnoStockSymbolList: ', fnoStockSymbolList)
         console.log('stkOptInfo: ', stkOptInfo)
         console.log('stkFutInfo: ', stkFutInfo)
@@ -82,6 +91,7 @@ export const initialDataChartAction = () => {
             type: 'CHART_INITIAL_DATA',
             payload: {
                 cashStockSymbolList : cashStockSymbolList,
+                indexSymbolList     : indexSymbolList,
                 fnoStockSymbolList  : fnoStockSymbolList,
                 fnoIndexSymbolList  : fnoIndexSymbolList,
                 stockOptionInfo     : stkOptInfo,
@@ -113,7 +123,77 @@ export const cashDataChartAction = (symbol) => {
     }
 }
 
-export const cashDataFnOChartAction = (symbol) => {
+export const indexDataChartAction = (symbol) => {
+    return async function(dispatch, getState) {
+        //console.log('CHART_CASH_DATA =====> state: ', getState());
+    
+        /*    
+        const response =  await fetch(CashDataAPI + symbol, {
+            method: 'GET'
+        })
+    
+        const jsonData = await response.json()
+        console.log('CHART_INDEX_DATA =====> status: ', jsonData);
+    
+        dispatch({
+            type: 'CHART_INDEX_DATA',
+            payload: {
+                indexData : jsonData
+            }
+        })
+        */
+
+        //-------------------------------------------------
+
+        const query_data = {
+            symbol                  : symbol,
+            startDate	    		: "01-Jan-2019",
+            stkOptExpiryDate 	    : "18-Jul-2019",
+            idxOptExpiryDate	    : "18-Jul-2019",
+            stkFutExpiryDate	    : "18-Jul-2019",
+            strikePrice   		    : 100,
+            date					: "18-Jul-2019",
+            charts  			    : ["indexData"],           
+            indexData     : {
+              sourceList			: ["index"],
+              index                 : ["date", "openValue", "highValue", "lowValue", "closingValue", "lowValue", "pointsChange",
+                                         "percentChange", "volume", "turnover", "peRatio", "pbRatio", "divYield"]
+            }
+          }
+    
+        const response =  await fetch(ChartDataAPI, {
+            method: 'POST',
+            body: JSON.stringify(query_data)
+        })
+    
+        const jsonData = await response.json()
+        console.log('CHART_INDEX_DATA =====> jsonData: ', jsonData);
+    
+        if (Object.keys(jsonData).includes('ERROR')) {
+            console.log('CHART_INDEX_DATA =====> got error: ', jsonData.ERROR);
+            dispatch({
+                type: 'CHART_INDEX_DATA',
+                payload: {
+                    ...getState() 
+                }
+            })
+        }
+        else {
+            dispatch({
+                type: 'CHART_INDEX_DATA',
+                payload: {
+                    indexData: jsonData.indexData,
+                        indexInputParams : {
+                            symbol          : symbol
+                        }
+                }
+            })
+        }
+
+    }
+}
+
+export const cashDataFnOChartAction = (symbol) => { // Used in FNO view
     return async function(dispatch, getState) {
         //console.log('CHART_CASH_DATA =====> state: ', getState());
     

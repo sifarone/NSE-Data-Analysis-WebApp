@@ -11,13 +11,12 @@ import chartsRequestHandler as chartsHandlers
 import adminRequestHandler as adminHandlers
 import users.userRequestHandler as userHandlers
 
-
-cashReqHandlers         = cashHandlers.CashDataRequestHandlers()
-fnoReqHandlers          = fnoHandlers.FnoDataRequestHandlers()
-indexReqHandlers        = indexHandlers.IndexDataRequestHandlers()
-chartsReqHandlers       = chartsHandlers.ChartsRequestHandler()
-adminReqHandlers        = adminHandlers.AdminRequestHandler()
-userReqHandlers         = userHandlers.UserRequestHandler()
+cashReqHandlers     = cashHandlers.CashDataRequestHandlers()
+fnoReqHandlers      = fnoHandlers.FnoDataRequestHandlers()
+indexReqHandlers    = indexHandlers.IndexDataRequestHandlers()
+chartsReqHandlers   = chartsHandlers.ChartsRequestHandler()
+adminReqHandlers    = adminHandlers.AdminRequestHandler()
+userReqHandlers     = userHandlers.UserRequestHandler()
 
 
 async def handleSymbolListRequest(request):
@@ -29,9 +28,14 @@ async def handleSymbolListRequest(request):
         result = await cashReqHandlers.handler_cashSymbolList(request)
         return web.json_response(result)
 
-    elif marketType == 'fno':
-        # Return the list of fno symbols
-        result = await fnoReqHandlers.handler_fnoSymbolList(request)
+    elif marketType == 'fnostock':
+        # Return the list of fno stock symbols
+        result = await fnoReqHandlers.handler_fnoStkSymbolList(request)
+        return web.json_response(result)
+
+    elif marketType == 'fnoindex':
+        # Return the list of fno index symbols
+        result = await fnoReqHandlers.handler_fnoIdxSymbolList(request)
         return web.json_response(result)
 
     elif marketType == 'index':
@@ -130,13 +134,16 @@ async def handlePostTestRequest(request):
     data = body['data']
     '''
 
-    name    = body.get('name')
-    age     = body.get('age')
-    data    = body.get('data')
+    name  = body.get('name')
+    age   = body.get('age')
+    data  = body.get('data')
 
     print(name, age, data)
     return web.json_response("Post Data reveived")
 
+#################################################################################
+
+# For Debugging purposes
 async def handleTestRequest(request):
     return web.json_response("Hello form Read Server!!")
 

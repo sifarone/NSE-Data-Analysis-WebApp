@@ -42,7 +42,29 @@ async def handlerCashCSVFileUpload(request):
         return web.json_response('{} size of {} successfully stored'.format(field.name, size))
 
     except Exception as e:
-        return web.json_response('Some error while storing Cash file at server end')
+        return web.json_response('Some error while storing Cash CSV File at server end')
+
+async def handlerArchivedCashCSVFileUpload(request):
+    print('Recieved: Archived Cash CSV File Upload request')
+    reader = await request.multipart()
+    field = await reader.next()
+
+    print('field: ', field)
+    print('Recieved File field.name: ', field.name)
+
+    try:
+        size = 0
+        with open(os.path.join(config.CASH_ARCHIVED_CSV_UPLOAD_PATH, field.name), 'wb') as f:
+            while True:
+                chunk = await field.read_chunk()
+                if not chunk:
+                    break
+                size += len(chunk)
+                f.write(chunk)
+        return web.json_response('{} size of {} successfully stored'.format(field.name, size))
+
+    except Exception as e:
+        return web.json_response('Some error while storing Archived Cash CSV File at server end')
 
 async def handlerFnOCSVFileUpload(request):
     print('Recieved: FnO CSV File Upload request')
@@ -86,7 +108,29 @@ async def handlerIndexCSVFileUpload(request):
         return web.json_response('{} size of {} successfully stored'.format(field.name, size))
 
     except Exception as e:
-        return web.json_response('Some error while storing Index file at server end')
+        return web.json_response('Some error while storing Index CSV File at server end')
+
+async def handlerArchivedIndexCSVFileUpload(request):
+    print('Recieved: Archived Index CSV File Upload request')
+    reader = await request.multipart()
+    field = await reader.next()
+
+    print('field: ', field)
+    print('Recieved File field.name: ', field.name)
+
+    try :
+        size = 0
+        with open(os.path.join(config.INDEX_ARCHIVED_CSV_UPLOAD_PATH, field.name), 'wb') as f:
+            while True:
+                chunk = await field.read_chunk()
+                if not chunk:
+                    break
+                size += len(chunk)
+                f.write(chunk)
+        return web.json_response('{} size of {} successfully stored'.format(field.name, size))
+
+    except Exception as e:
+        return web.json_response('Some error while storing Archived Index CSV File at server end')
 
 #################################################################################
 
@@ -118,11 +162,17 @@ cors.add(admin_resource.add_route("POST", handleAdminJobs))
 uploadCashCsv_resource = cors.add(app.router.add_resource("/write/api/admin/upload/cashcsv"))
 cors.add(uploadCashCsv_resource.add_route("POST", handlerCashCSVFileUpload))
 
+uploadArchivedCashCsv_resource = cors.add(app.router.add_resource("/write/api/admin/upload/archivedcashcsv"))
+cors.add(uploadArchivedCashCsv_resource.add_route("POST", handlerArchivedCashCSVFileUpload))
+
 uploadFnOCsv_resource = cors.add(app.router.add_resource("/write/api/admin/upload/fnocsv"))
 cors.add(uploadFnOCsv_resource.add_route("POST", handlerFnOCSVFileUpload))
 
 uploadIndexCsv_resource = cors.add(app.router.add_resource("/write/api/admin/upload/indexcsv"))
 cors.add(uploadIndexCsv_resource.add_route("POST", handlerIndexCSVFileUpload))
+
+uploadArchivedIndexCsv_resource = cors.add(app.router.add_resource("/write/api/admin/upload/archivedindexcsv"))
+cors.add(uploadArchivedIndexCsv_resource.add_route("POST", handlerArchivedIndexCSVFileUpload))
 
 # For Debugging -----------
 test_resource = cors.add(app.router.add_resource("/write/test"))

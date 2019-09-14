@@ -2,8 +2,10 @@ import { AdminInitJobsAPI,
         AdminWriteServerJobsAPI,
         //AdminUploadCSVDataAPI,
         AdminUploadCashCSVFileAPI,
+        AdminUploadArchivedCashCSVFileAPI,
         AdminUploadFnOCSVFileAPI,
-        AdminUploadIndexCSVFileAPI } from '../APIs';
+        AdminUploadIndexCSVFileAPI,
+        AdminUploadArchivedIndexCSVFileAPI } from '../APIs';
 
 export const adminInitJobAction = () => {
     return async function(dispatch, getState) {
@@ -11,6 +13,7 @@ export const adminInitJobAction = () => {
         const post_body = {
             actions : [
                             "CASH_SYMBOLS",
+                            "INDEX_SYMBOLS",
                             "FNOSTK_SYMBOLS",
                             "FNOIDX_SYMBOLS",
                             "INFO_STKOPT",
@@ -37,6 +40,7 @@ export const adminInitJobAction = () => {
     }
 }
 
+// LOAD DATA TO DB FROM UPLOADED CSV FILES ACTION --------------------------
 
 export const adminLoadCashDataAction = () => {
     return async function(dispatch, getState) {
@@ -60,6 +64,33 @@ export const adminLoadCashDataAction = () => {
             type: 'ADMIN_LOAD_CASH_DATA',
             payload: {
                 adminLoadCashDataStatus : jsonData
+            }
+        })
+    }
+}
+
+export const adminLoadArchivedCashDataAction = () => {
+    return async function(dispatch, getState) {
+
+        const post_body = {
+            actions     : ['LOAD_DATA'],
+            dataType    : 'CASH_DATA',
+            source      : "archivedCsv",
+            checks      : "yes" 
+        }
+    
+        const response =  await fetch(AdminWriteServerJobsAPI, {
+            method: 'POST',
+            body: JSON.stringify(post_body)
+        })
+    
+        const jsonData = await response.json()
+        console.log('ADMIN_LOAD_ARCHIVED_CASH_DATA =====> status: ', jsonData);
+    
+        dispatch({
+            type: 'ADMIN_LOAD_ARCHIVED_CASH_DATA',
+            payload: {
+                adminLoadArchivedCashDataStatus : jsonData
             }
         })
     }
@@ -91,6 +122,62 @@ export const adminLoadFnODataAction = () => {
     }
 }
 
+export const adminLoadIndexDataAction = () => {
+    return async function(dispatch, getState) {
+
+        const post_body = {
+            actions     : ['LOAD_DATA'],
+            dataType    : 'INDEX_DATA',
+            source      : "csv",
+            checks      : "yes" 
+        }
+    
+        const response =  await fetch(AdminWriteServerJobsAPI, {
+            method: 'POST',
+            body: JSON.stringify(post_body)
+        })
+    
+        const jsonData = await response.json()
+        console.log('ADMIN_LOAD_INDEX_DATA =====> status: ', jsonData);
+    
+        dispatch({
+            type: 'ADMIN_LOAD_INDEX_DATA',
+            payload: {
+                adminLoadIndexDataStatus : jsonData
+            }
+        })
+    }
+}
+
+export const adminLoadArchivedIndexDataAction = () => {
+    return async function(dispatch, getState) {
+
+        const post_body = {
+            actions     : ['LOAD_DATA'],
+            dataType    : 'INDEX_DATA',
+            source      : "archivedCsv",
+            checks      : "yes" 
+        }
+    
+        const response =  await fetch(AdminWriteServerJobsAPI, {
+            method: 'POST',
+            body: JSON.stringify(post_body)
+        })
+    
+        const jsonData = await response.json()
+        console.log('ADMIN_LOAD_ARCHIVED_INDEX_DATA =====> status: ', jsonData);
+    
+        dispatch({
+            type: 'ADMIN_LOAD_ARCHIVED_INDEX_DATA',
+            payload: {
+                adminLoadArchivedIndexDataStatus : jsonData
+            }
+        })
+    }
+}
+
+// UPLOAD CSV FILES ACTIONS -------------------------------------------------------
+
 export const adminUploadCashCsvFileAction = (formData) => {
     return async function(dispatch, getState) {  
     
@@ -106,6 +193,26 @@ export const adminUploadCashCsvFileAction = (formData) => {
             type: 'ADMIN_UPLOAD_CASH_CSV_FILE',
             payload: {
                 adminUploadCashCsvFileStatus : jsonData
+            }
+        })
+    }
+}
+
+export const adminUploadArchivedCashCsvFileAction = (formData) => {
+    return async function(dispatch, getState) {  
+    
+        const response =  await fetch(AdminUploadArchivedCashCSVFileAPI , {
+            method: 'POST',
+            body: formData
+        })
+        const jsonData = await response.json()
+
+        console.log('ADMIN_UPLOAD_ARCHIVED_CASH_CSV_FILE =====> status: ', jsonData);
+    
+        dispatch({
+            type: 'ADMIN_UPLOAD_ARCHIVED_CASH_CSV_FILE',
+            payload: {
+                adminUploadArchivedCashCsvFileStatus : jsonData
             }
         })
     }
@@ -150,6 +257,28 @@ export const adminUploadIndexCsvFileAction = (formData) => {
         })
     }
 }
+
+export const adminUploadArchivedIndexCsvFileAction = (formData) => {
+    return async function(dispatch, getState) {        
+    
+        const response =  await fetch(AdminUploadArchivedIndexCSVFileAPI, {
+            method: 'POST',
+            body: formData
+        })
+        const jsonData = await response.json()
+
+        console.log('ADMIN_UPLOAD_ARCHIVED_INDEX_CSV_FILE =====> status: ', jsonData);
+    
+        dispatch({
+            type: 'ADMIN_UPLOAD_ARCHIVED_INDEX_CSV_FILE',
+            payload: {
+                adminUploadArchivedIndexCsvFileStatus : jsonData
+            }
+        })
+    }
+}
+
+// CLEAR DESTINATION DIRECTORY ------------------------------------------------------------
 
 export const adminDeleteCashDirAction = () => {
     return async function(dispatch, getState) {
@@ -275,6 +404,8 @@ export const adminDeleteIndexArchivedDirAction = () => {
         })
     }
 }
+
+// DELETE DATA ACTIONS---------------------------------------------------------------------
 
 export const adminDeleteCashDataAction = () => {
     return async function(dispatch, getState) {

@@ -18,7 +18,7 @@ spec:
                   claimName: write-server-persistent-volume-claim
             containers:
               - name: write-server
-                image: sifarone/eod_analysis:write-server-2.0
+                image: sifarone/eod_analysis:write-server-3.0
                 #image: sifarone/eod_analysis:write-server-debug-2.2
                 ports:
                     - containerPort: 50000

@@ -112,6 +112,7 @@ async def loadFnoDataToDB(request):
     except Exception as e:
         return responses.errorMessage({'ERROR': str(e)})
 
+
 async def deleteStockFnoData(body):
     try:
        expiryDate = body.get('expiryDate')
@@ -135,3 +136,4 @@ async def deleteIndexFnoData(body):
 
     except Exception as e:
         return ('ERROR : %s' % str(e))
+

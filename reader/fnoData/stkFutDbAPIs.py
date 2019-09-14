@@ -7,8 +7,8 @@ from . import fnoUtils as utils
 
 class StkFutDbAPIs:
     def __init__(self):
-        self.dbClient = motor.motor_asyncio.AsyncIOMotorClient(config.DB_HOST, config.DB_PORT)
-        self.db = self.dbClient[config.DATABASE]
+        self.dbClient   = motor.motor_asyncio.AsyncIOMotorClient(config.DB_HOST, config.DB_PORT)
+        self.db         = self.dbClient[config.DATABASE]
         self.collection = self.db[config.STKFUT_COLLECTION]
 
     async def getStkFutSymbolList(self):
@@ -74,8 +74,8 @@ class StkFutDbAPIs:
                                 .
                 }
         '''
-        futureInfo = []
-        futureData = {}
+        futureInfo  = []
+        futureData  = {}
         expiryDates = set()
 
         try:

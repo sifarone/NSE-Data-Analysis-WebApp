@@ -12,9 +12,12 @@ import { ExpansionPanel } from '@material-ui/core';
 
 import StkFnOMenu from './StkFnOMenu';
 import CashMenu from './CashMenu';
+import IndexMenu from './IndexMenu';
 import ChartCashEMA from './ChartCashEMA';
+import ChartIndexEMA from './ChartIndexEMA';
 import IdxFnOMenu from './IdxFnOMenu';
 import ChartCashPriceVsDelivPerc from './ChartCashPriceVsDelivPerc';
+import ChartIndexOpenClosePEratio from './ChartIndexOpenClosePEratio';
 import ChartStkCashFutOpt from './ChartStkCashFutOpt';
 import ChartStkOptOIvsChOI from './ChartStkOptOIvsChOI';
 import ChartIdxOptOIvsChOI from './ChartIdxOptOIvsChOI';
@@ -69,6 +72,7 @@ const ChartAppMain = () => {
   const isAdmin     = useSelector((state) => state.userInfo.isAdmin);
 
   const cashStockSymbolList   = useSelector((state) => state.chartData.cashStockSymbolList);
+  const indexSymbolList       = useSelector((state) => state.chartData.indexSymbolList);
   const fnoStockSymbolList    = useSelector((state) => state.chartData.fnoStockSymbolList);  
   const fnoIndexSymbolList    = useSelector((state) => state.chartData.fnoIndexSymbolList);
   const stockOptionInfo       = useSelector((state) => state.chartData.stockOptionInfo);
@@ -77,6 +81,7 @@ const ChartAppMain = () => {
   const indexFutureInfo       = useSelector((state) => state.chartData.indexFutureInfo);
   
   const cashData          = useSelector((state) => state.chartData.cashData);
+  const indexData         = useSelector((state) => state.chartData.indexData);
   const cashFnOData       = useSelector((state) => state.chartData.cashFnOData);
   const stk_pe_oivsdoi    = useSelector((state) => state.chartData.stk_pe_oivsdoi);
   const stk_ce_oivsdoi    = useSelector((state) => state.chartData.stk_ce_oivsdoi);
@@ -233,6 +238,40 @@ const ChartAppMain = () => {
         </table>
       )
     }
+    else if (section === 'indexAnalysis') {
+      return (
+        <table>
+          <tbody>
+            <tr>
+              <td style={{border:"1px solid"}}>
+                {
+                  indexData ?
+                  <ChartIndexOpenClosePEratio 
+                      cdata={indexData} 
+                      title={'Index Closing Price Vs PE Ratio'} />
+                  : <div></div>
+                }
+              </td>
+            </tr>
+
+            <tr>
+              <td style={{border:"1px solid"}}>
+                {
+                  Object.keys(indexData).length ?
+                  <ChartIndexEMA
+                      cdata={indexData} 
+                      title={'EMA'} />
+                  : <ChartIndexEMA
+                      cdata={indexData['closingValue'] = []} 
+                      title={'EMA'} />
+                }
+              </td>
+            </tr>
+
+          </tbody>
+        </table>
+      )
+    }
     else if (section === 'stkOptionChain') {
       return (
         <div>
@@ -313,6 +352,11 @@ const ChartAppMain = () => {
               fnoStockSymbolList    = {fnoStockSymbolList} 
               stockOptionInfo       = {stockOptionInfo} 
               stockFutureInfo       = {stockFutureInfo} />
+          </ExpansionPanel>
+
+          <ExpansionPanel onClick={() => setSection('indexAnalysis')}>
+            <IndexMenu 
+              indexSymbolList = {indexSymbolList} />  
           </ExpansionPanel>
 
           <ExpansionPanel onClick={() => setSection('idxFnoAnalysis')}>

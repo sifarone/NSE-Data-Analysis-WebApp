@@ -18,60 +18,62 @@ async def getData(params, source): #3
     elif source == 'call_stkOptByDate':
 
         expDate = utils.convertStringToDatetime(params['stkOptExpiryDate'])
-        dd = utils.convertStringToDatetime(params['date'])
-        data = await stkOptDbAPIs.StkOptDbAPIs().getStkOptDataForADate(params['symbol'], expDate, 'CE', dd)
+        dd      = utils.convertStringToDatetime(params['date'])
+        data    = await stkOptDbAPIs.StkOptDbAPIs().getStkOptDataForADate(params['symbol'], expDate, 'CE', dd)
         return data
 
     elif source == 'put_stkOptByDate':
         expDate = utils.convertStringToDatetime(params['stkOptExpiryDate'])
-        dd = utils.convertStringToDatetime(params['date'])
-        data = await stkOptDbAPIs.StkOptDbAPIs().getStkOptDataForADate(params['symbol'], expDate, 'PE', dd)
+        dd      = utils.convertStringToDatetime(params['date'])
+        data    = await stkOptDbAPIs.StkOptDbAPIs().getStkOptDataForADate(params['symbol'], expDate, 'PE', dd)
         return data
 
     elif source == 'put_stkOptOIvsDeltaOI':
         # convert dates from string to date types
         expDate = utils.convertStringToDatetime(params['stkOptExpiryDate'])
-        dd = utils.convertStringToDatetime(params['date'])
-        data = await stkOptDbAPIs.StkOptDbAPIs().getStrikePricePutCallDetailsForADate(params['symbol'], expDate, dd)
+        dd      = utils.convertStringToDatetime(params['date'])
+        data    = await stkOptDbAPIs.StkOptDbAPIs().getStrikePricePutCallDetailsForADate(params['symbol'], expDate, dd)
         return data['PE']
 
     elif source == 'call_stkOptOIvsDeltaOI':
         # convert dates from string to datetime types
         expDate = utils.convertStringToDatetime(params['stkOptExpiryDate'])
-        dd = utils.convertStringToDatetime(params['date'])
-        data = await stkOptDbAPIs.StkOptDbAPIs().getStrikePricePutCallDetailsForADate(params['symbol'], expDate, dd)
+        dd      = utils.convertStringToDatetime(params['date'])
+        data    = await stkOptDbAPIs.StkOptDbAPIs().getStrikePricePutCallDetailsForADate(params['symbol'], expDate, dd)
         return data['CE']
 
     elif source == 'stkFutByExpiryDate':
         expDate = utils.convertStringToDatetime(params['stkFutExpiryDate'])
-        data = await stkFutDbAPIs.StkFutDbAPIs().getStkFutDataForAExpiryMonth(params['symbol'], expDate)
+        data    = await stkFutDbAPIs.StkFutDbAPIs().getStkFutDataForAExpiryMonth(params['symbol'], expDate)
         return data
 
-    elif source == 'idxOpt':
+    elif source == 'idxOpt':   # TBD =====================================
         pass
 
     elif source == 'put_idxOptOIvsDeltaOI':
         # convert dates from string to date types
         expDate = utils.convertStringToDatetime(params['idxOptExpiryDate'])
-        dd = utils.convertStringToDatetime(params['date'])
-        data = await idxOptDbAPIs.IdxOptDbAPIs().getStrikePricePutCallDetailsForADate(params['symbol'], expDate, dd)
+        dd      = utils.convertStringToDatetime(params['date'])
+        data    = await idxOptDbAPIs.IdxOptDbAPIs().getStrikePricePutCallDetailsForADate(params['symbol'], expDate, dd)
         return data['PE']
 
     elif source == 'call_idxOptOIvsDeltaOI':
         # convert dates from string to datetime types
         expDate = utils.convertStringToDatetime(params['idxOptExpiryDate'])
-        dd = utils.convertStringToDatetime(params['date'])
-        data = await idxOptDbAPIs.IdxOptDbAPIs().getStrikePricePutCallDetailsForADate(params['symbol'], expDate, dd)
+        dd      = utils.convertStringToDatetime(params['date'])
+        data    = await idxOptDbAPIs.IdxOptDbAPIs().getStrikePricePutCallDetailsForADate(params['symbol'], expDate, dd)
         return data['CE']
 
     elif source == 'idxFutByExpiryDate':
         expDate = utils.convertStringToDatetime(params['idxFutExpiryDate'])
         #print('1 --> ExpiryDate : ', expDate)
-        data = await idxFutDbAPIs.IdxFutDbAPIs().getIdxFutDataForAExpiryMonth(params['symbol'], expDate)
+        data    = await idxFutDbAPIs.IdxFutDbAPIs().getIdxFutDataForAExpiryMonth(params['symbol'], expDate)
         return data
 
     elif source == 'index':
-        pass
+        data = await indexDbAPIs.IndexDbAPIs().getIndexMarketData(params['symbol'], params['startDate'], params['date'])
+        #print('Index Data --- >> ', data)
+        return data
 
     elif source == 'cashStkFutStkOptCE':
         #print('In cashStkFutStkOptCE params[strikePrice] : ', params['strikePrice'])
@@ -83,7 +85,6 @@ async def getData(params, source): #3
         cashData = await cashDbAPIs.CashDbAPIs().getCashData(params['symbol'], stDate)
         #print('1==>> cashData : ', cashData)
         del cashData['date']
-
 
         expDate = utils.convertStringToDatetime(params['stkFutExpiryDate'])
         futData = await stkFutDbAPIs.StkFutDbAPIs().getStkFutDataForAExpiryMonth(params['symbol'], expDate)

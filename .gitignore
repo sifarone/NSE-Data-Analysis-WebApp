@@ -1,0 +1,15 @@
+/ui_app/node_modules
+/ui_app/.vscode
+/ui_app/build
+/.idea/
+
+reader/__pycache__/
+reader/cashData/__pycache__/
+reader/fnoData/__pycache__/
+reader/indexData/__pycache__/
+reader/users/__pycache__/
+writer/__pycache__/
+writer/cashData/__pycache__/
+writer/fnoData/__pycache__/
+writer/indexData/__pycache__/
+writer/users/__pycache__/

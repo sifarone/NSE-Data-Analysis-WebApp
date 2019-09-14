@@ -7,48 +7,48 @@ dateFormatString = "%d-%b-%Y"
 # BhavData Fields
 dailyBhavDataFields = {
     # 'symbol'        : 'symbol',
-    'date': 'date',
-    'prevClose': 'prevClose',
-    'openPrice': 'openPrice',
-    'highPrice': 'highPrice',
-    'lowPrice': 'lowPrice',
-    'lastPrice': 'lastPrice',
-    'closePrice': 'closePrice',
-    'avgPrice': 'avgPrice',
-    'ttlTrdQtnty': 'ttlTrdQtnty',
-    'turnoverLacs': 'turnoverLacs',
-    'noOfTrades': 'noOfTrades',
-    'delivQty': 'delivQty',
-    'delivPer': 'delivPer'
+    'date'              : 'date',
+    'prevClose'         : 'prevClose',
+    'openPrice'         : 'openPrice',
+    'highPrice'         : 'highPrice',
+    'lowPrice'          : 'lowPrice',
+    'lastPrice'         : 'lastPrice',
+    'closePrice'        : 'closePrice',
+    'avgPrice'          : 'avgPrice',
+    'ttlTrdQtnty'       : 'ttlTrdQtnty',
+    'turnoverLacs'      : 'turnoverLacs',
+    'noOfTrades'        : 'noOfTrades',
+    'delivQty'          : 'delivQty',
+    'delivPer'          : 'delivPer'
 }
 
 STOCK_COL_IDX = {
-    "symbol": 0,
-    'date': 2,  # Skip the 'Series' column
-    'prevClose': 3,
-    'openPrice': 4,
-    'highPrice': 5,
-    'lowPrice': 6,
-    'lastPrice': 7,
-    'closePrice': 8,
-    'avgPrice': 9,
-    'ttlTrdQtnty': 10,
-    'turnoverLacs': 11,
-    'noOfTrades': 12,
-    'delivQty': 13,
-    'delivPer': 14
+    "symbol"            : 0,
+    'date'              : 2,  # Skip the 'Series' column
+    'prevClose'         : 3,
+    'openPrice'         : 4,
+    'highPrice'         : 5,
+    'lowPrice'          : 6,
+    'lastPrice'         : 7,
+    'closePrice'        : 8,
+    'avgPrice'          : 9,
+    'ttlTrdQtnty'       : 10,
+    'turnoverLacs'      : 11,
+    'noOfTrades'        : 12,
+    'delivQty'          : 13,
+    'delivPer'          : 14
 }
 
 # Archived bhavcopy has less fields and different column positioning
 STOCK_ARCHIVED_COL_IDX = {
-    'symbol': 0,
-    'openPrice': 2,
-    'highPrice': 3,
-    'lowPrice': 4,
-    'closePrice': 5,
-    'lastPrice': 6,
-    'prevClose': 7,
-    'date': 10
+    'symbol'            : 0,
+    'openPrice'         : 2,
+    'highPrice'         : 3,
+    'lowPrice'          : 4,
+    'closePrice'        : 5,
+    'lastPrice'         : 6,
+    'prevClose'         : 7,
+    'date'              : 10
 }
 
 

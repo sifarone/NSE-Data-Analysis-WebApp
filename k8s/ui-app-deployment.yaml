@@ -15,6 +15,6 @@ spec:
           containers:
             - name: client
               #image: sifarone/eod_analysis:ui-react-app-1.0
-              image: sifarone/eod_analysis:ui-react-app-HTTPS-2.0
+              image: sifarone/eod_analysis:ui-react-app-HTTPS-3.0
               ports:
                 - containerPort: 80

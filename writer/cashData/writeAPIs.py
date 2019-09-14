@@ -41,7 +41,7 @@ async def loadArchivedDataFromCsv(checks):
             print()
             # Load Individual files in DB one by one
             dataToLoad = loadCashDataFromCsv.LoadArchivedBhavDataFromCsvToDB(f)
-            print('     Loading Stock bhavData :')
+            print('     Loading Archived Stock BhavData :')
             if checks == 'yes':
                 e, u, s = await dataToLoad.loadDataWithCheck()
             else:

@@ -7,8 +7,8 @@ from . import fnoUtils as utils
 
 class IdxOptDbAPIs:
     def __init__(self):
-        self.dbClient = motor.motor_asyncio.AsyncIOMotorClient(config.DB_HOST, config.DB_PORT)
-        self.db = self.dbClient[config.DATABASE]
+        self.dbClient   = motor.motor_asyncio.AsyncIOMotorClient(config.DB_HOST, config.DB_PORT)
+        self.db         = self.dbClient[config.DATABASE]
         self.collection = self.db[config.IDXOPT_COLLECTION]
 
     async def getIdxOptSymbolList(self):
@@ -92,8 +92,8 @@ class IdxOptDbAPIs:
             return sorted(list(strikePrices)), returnData  # {}, {} in case of exception
 
     async def getIdxOptData(self, symbol):
-        optionData = {}
-        optionInfo = {}
+        optionData  = {}
+        optionInfo  = {}
         expiryDates = set()
 
         try:
@@ -118,9 +118,9 @@ class IdxOptDbAPIs:
 
     # This function will be used to construct the OPTION CHAIN
     async def getIdxOptDataForADate(self, symbol, expiryDate, optionType, date):
-        returnInfo = {}
-        returnData = {}
-        tempData = {}
+        returnInfo  = {}
+        returnData  = {}
+        tempData    = {}
         # print('-->', expiryDate)
         info, allSpData = await self.getIdxOptExpiryDateData(symbol, expiryDate)
         if allSpData:
@@ -337,7 +337,7 @@ class IdxOptDbAPIs:
             symbolList = await self.getIdxOptSymbolList()
             for symbol in symbolList:
                 # optionData = {}
-                optionInfo = {}
+                optionInfo  = {}
                 expiryDates = set()
 
                 async for document in self.collection.find({'symbol': symbol}):

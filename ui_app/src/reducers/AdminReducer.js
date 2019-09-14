@@ -1,19 +1,24 @@
 const initialState = {    
-    adminInitJobStatus                  : {},
-    adminLoadCashDataStatus             : {},
-    adminLoadFnODataStatus              : {},
-    adminUploadCashCsvFileStatus        : '',
-    adminUploadFnOCsvFileStatus         : '',
-    adminUploadIndexCsvFileStatus       : '',
-    adminDeleteCashDirStatus            : '',
-    adminDeleteCashArchivedDirStatus    : '',
-    adminDeleteFnODirStatus             : '',
-    adminDeleteIndexDirStatus           : '',
-    adminDeleteIndexArchivedDirStatus   : '',
-    adminDeleteCashDataStatus           : '',
-    adminDeleteStockFnODataStatus       : '',
-    adminDeleteIndexFnODataStatus       : '',
-    adminDeleteIndexDataStatus          : ''
+    adminInitJobStatus                      : {},
+    adminLoadCashDataStatus                 : {},
+    adminLoadArchivedCashDataStatus         : {},
+    adminLoadFnODataStatus                  : {},
+    adminLoadIndexDataStatus                : {},
+    adminLoadArchivedIndexDataStatus        : {},
+    adminUploadCashCsvFileStatus            : '',
+    adminUploadArchivedCashCsvFileStatus    : '',
+    adminUploadFnOCsvFileStatus             : '',
+    adminUploadIndexCsvFileStatus           : '',
+    adminUploadArchivedIndexCsvFileStatus   : '',
+    adminDeleteCashDirStatus                : '',
+    adminDeleteCashArchivedDirStatus        : '',
+    adminDeleteFnODirStatus                 : '',
+    adminDeleteIndexDirStatus               : '',
+    adminDeleteIndexArchivedDirStatus       : '',
+    adminDeleteCashDataStatus               : '',
+    adminDeleteStockFnODataStatus           : '',
+    adminDeleteIndexFnODataStatus           : '',
+    adminDeleteIndexDataStatus              : ''
 }
 
 export const adminReducer = (state=initialState, action) => {
@@ -31,13 +36,37 @@ export const adminReducer = (state=initialState, action) => {
                 ...action.payload
             }
 
+        case 'ADMIN_LOAD_ARCHIVED_CASH_DATA':
+            return {
+                ...state,
+                ...action.payload
+            }
+
         case 'ADMIN_LOAD_FNO_DATA':
             return {
                 ...state,
                 ...action.payload
             }
 
+        case 'ADMIN_LOAD_INDEX_DATA':
+            return {
+                ...state,
+                ...action.payload
+            }
+
+        case 'ADMIN_LOAD_ARCHIVED_INDEX_DATA':
+            return {
+                ...state,
+                ...action.payload
+            }
+
         case 'ADMIN_UPLOAD_CASH_CSV_FILE':
+            return {
+                ...state,
+                ...action.payload
+            }
+
+        case 'ADMIN_UPLOAD_ARCHIVED_CASH_CSV_FILE':
             return {
                 ...state,
                 ...action.payload
@@ -50,6 +79,12 @@ export const adminReducer = (state=initialState, action) => {
             }
 
         case 'ADMIN_UPLOAD_INDEX_CSV_FILE':
+            return {
+                ...state,
+                ...action.payload
+            }
+
+        case 'ADMIN_UPLOAD_ARCHIVED_INDEX_CSV_FILE':
             return {
                 ...state,
                 ...action.payload

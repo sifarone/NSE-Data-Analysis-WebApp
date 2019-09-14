@@ -12,12 +12,12 @@ import users.userRequestHandler as userHandlers
 
 
 
-cashReqHandlers         = cashHandlers.CashDataRequestHandlers()
-fnoReqHandlers          = fnoHandlers.FnoDataRequestHandlers()
-indexReqHandlers        = indexHandlers.IndexDataRequestHandlers()
-chartsReqHandlers       = chartsHandlers.ChartsRequestHandler()
-adminReqHandlers        = adminHandlers.AdminRequestHandler()
-userReqHandlers         = userHandlers.UserRequestHandler()
+cashReqHandlers    = cashHandlers.CashDataRequestHandlers()
+fnoReqHandlers     = fnoHandlers.FnoDataRequestHandlers()
+indexReqHandlers   = indexHandlers.IndexDataRequestHandlers()
+chartsReqHandlers  = chartsHandlers.ChartsRequestHandler()
+adminReqHandlers   = adminHandlers.AdminRequestHandler()
+userReqHandlers    = userHandlers.UserRequestHandler()
 
 
 # Initialize a route table

@@ -113,19 +113,19 @@ class LoadArchivedBhavDataFromCsvToDB:
         data = self.csvData.getStockFlatData()
         for row in data:
             bhavData = {
-                'date': parser.parse(str(row['date']).strip()),  # as a gatetime.date() object
-                'prevClose': float(row['prevClose'] if (utils.is_number(row['prevClose'])) else '0.0'),
-                'openPrice': float(row['openPrice'] if (utils.is_number(row['openPrice'])) else '0.0'),
-                'highPrice': float(row['highPrice'] if (utils.is_number(row['highPrice'])) else '0.0'),
-                'lowPrice': float(row['lowPrice'] if (utils.is_number(row['lowPrice'])) else '0.0'),
-                'lastPrice': float(row['lastPrice'] if (utils.is_number(row['lastPrice'])) else '0.0'),
-                'closePrice': float(row['closePrice'] if (utils.is_number(row['closePrice'])) else '0.0'),
-                'avgPrice'        : float('0.0'),
-                'ttlTrdQtnty'     : int('0'),
-                'turnoverLacs'    : float('0.0'),
-                'noOfTrades'      : int('0'),
-                'delivQty'        : int('0'),
-                'delivPer'        : float('0.0')
+                'date'          : parser.parse(str(row['date']).strip()),  # as a gatetime.date() object
+                'prevClose'     : float(row['prevClose'] if (utils.is_number(row['prevClose'])) else '0.0'),
+                'openPrice'     : float(row['openPrice'] if (utils.is_number(row['openPrice'])) else '0.0'),
+                'highPrice'     : float(row['highPrice'] if (utils.is_number(row['highPrice'])) else '0.0'),
+                'lowPrice'      : float(row['lowPrice'] if (utils.is_number(row['lowPrice'])) else '0.0'),
+                'lastPrice'     : float(row['lastPrice'] if (utils.is_number(row['lastPrice'])) else '0.0'),
+                'closePrice'    : float(row['closePrice'] if (utils.is_number(row['closePrice'])) else '0.0'),
+                'avgPrice'      : float('0.0'),
+                'ttlTrdQtnty'   : int('0'),
+                'turnoverLacs'  : float('0.0'),
+                'noOfTrades'    : int('0'),
+                'delivQty'      : int('0'),
+                'delivPer'      : float('0.0')
             }
 
             try:
@@ -152,19 +152,19 @@ class LoadArchivedBhavDataFromCsvToDB:
         data = self.csvData.getStockFlatData()
         for row in data:
             bhavData = {
-                'date': parser.parse(str(row['date']).strip()),  # as a gatetime.date() object
-                'prevClose': float(row['prevClose'] if (utils.is_number(row['prevClose'])) else '0.0'),
-                'openPrice': float(row['openPrice'] if (utils.is_number(row['openPrice'])) else '0.0'),
-                'highPrice': float(row['highPrice'] if (utils.is_number(row['highPrice'])) else '0.0'),
-                'lowPrice': float(row['lowPrice'] if (utils.is_number(row['lowPrice'])) else '0.0'),
-                'lastPrice': float(row['lastPrice'] if (utils.is_number(row['lastPrice'])) else '0.0'),
-                'closePrice': float(row['closePrice'] if (utils.is_number(row['closePrice'])) else '0.0'),
-                'avgPrice'        : float('0.0'),
-                'ttlTrdQtnty'     : int('0'),
-                'turnoverLacs'    : float('0.0'),
-                'noOfTrades'      : int('0'),
-                'delivQty'        : int('0'),
-                'delivPer'        : float('0.0')
+                'date'          : parser.parse(str(row['date']).strip()),  # as a gatetime.date() object
+                'prevClose'     : float(row['prevClose'] if (utils.is_number(row['prevClose'])) else '0.0'),
+                'openPrice'     : float(row['openPrice'] if (utils.is_number(row['openPrice'])) else '0.0'),
+                'highPrice'     : float(row['highPrice'] if (utils.is_number(row['highPrice'])) else '0.0'),
+                'lowPrice'      : float(row['lowPrice'] if (utils.is_number(row['lowPrice'])) else '0.0'),
+                'lastPrice'     : float(row['lastPrice'] if (utils.is_number(row['lastPrice'])) else '0.0'),
+                'closePrice'    : float(row['closePrice'] if (utils.is_number(row['closePrice'])) else '0.0'),
+                'avgPrice'      : float('0.0'),
+                'ttlTrdQtnty'   : int('0'),
+                'turnoverLacs'  : float('0.0'),
+                'noOfTrades'    : int('0'),
+                'delivQty'      : int('0'),
+                'delivPer'      : float('0.0')
             }
 
             try:

@@ -113,8 +113,7 @@ class IndexDataWrapper:
 
         return returnData
 
-    def getDataForAInterval(self, startDate,
-                                              endDate=datetime.date.today()):  # returns by ascending date order
+    def getDataForAInterval(self, startDate, endDate=datetime.date.today()):  # returns by ascending date order
         '''
         Returns daily data in following format:
         {

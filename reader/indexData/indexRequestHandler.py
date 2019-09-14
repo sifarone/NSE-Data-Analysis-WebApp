@@ -15,9 +15,9 @@ class IndexDataRequestHandlers:
         #return await self.indexDbAPIs.getIndexSymbolList()
 
         # FROM REDIS SERVER
-        data = redisAPIs.readDataFromRedis('FNOIDX_SYMBOLS')
+        data = redisAPIs.readDataFromRedis('INDEX_SYMBOLS')
         if data:
-            return json.loads(redisAPIs.readDataFromRedis('FNOIDX_SYMBOLS'))
+            return json.loads(redisAPIs.readDataFromRedis('INDEX_SYMBOLS'))
         else:
             #return json.loads({'ERROR' : 'Redis data needs to be built'})
             #return ('ERROR: FNOIDX_SYMBOLS')

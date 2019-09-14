@@ -7,8 +7,8 @@ from . import fnoUtils as utils
 
 class StkOptDbAPIs:
     def __init__(self):
-        self.dbClient = motor.motor_asyncio.AsyncIOMotorClient(config.DB_HOST, config.DB_PORT)
-        self.db = self.dbClient[config.DATABASE]
+        self.dbClient   = motor.motor_asyncio.AsyncIOMotorClient(config.DB_HOST, config.DB_PORT)
+        self.db         = self.dbClient[config.DATABASE]
         self.collection = self.db[config.STKOPT_COLLECTION]
 
     async def getFnOSymbolList(self):
@@ -167,8 +167,8 @@ class StkOptDbAPIs:
                                 .
                 }
         '''
-        optionData = {}
-        optionInfo = {}
+        optionData  = {}
+        optionInfo  = {}
         expiryDates = set()
 
         try:
@@ -194,16 +194,16 @@ class StkOptDbAPIs:
 
     # This function will be used to construct the OPTION CHAIN
     async def getStkOptDataForADate(self, symbol, expiryDate, optionType, date):
-        returnInfo = {}
-        returnData = {}
-        tempData = {}
+        returnInfo  = {}
+        returnData  = {}
+        tempData    = {}
         info, allSpData = await self.getStkOptExpiryDateData(symbol, expiryDate)
         if allSpData:
             spList = list(allSpData.keys())  # List of all strike prices on that date for a particular expiry
 
             for sp in spList:
                 spDailyData = allSpData[sp][optionType]
-                dateList = spDailyData['date']  # list of date strings
+                dateList    = spDailyData['date']  # list of date strings
                 indexOfDate = dateList.index(utils.convertDateToString(date))
                 data = {}
                 for field in utils.stkOptDailyDataFields.keys():
@@ -427,7 +427,7 @@ class StkOptDbAPIs:
             symbolList = await self.getFnOSymbolList()
             for symbol in symbolList:
                 #optionData = {}
-                optionInfo = {}
+                optionInfo  = {}
                 expiryDates = set()
 
                 async for document in self.collection.find({'symbol': symbol}):
@@ -447,6 +447,4 @@ class StkOptDbAPIs:
         except Exception as e:
             print('getInfoForAllStkOptSymbols () : Fatal Error : ', e)
             return returnData
-
-
 

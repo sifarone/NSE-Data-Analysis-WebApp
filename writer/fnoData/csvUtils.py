@@ -153,20 +153,20 @@ class ReadFnOCSV:
         # Nested function
         def getDictFromRows(r):
             rowDict = {
-                'symbol': r[self.columns[utils.FNO_COL_IDX['symbol']]],
-                'expiryDate': r[self.columns[utils.FNO_COL_IDX['expiryDate']]],
-                'strikePrice': r[self.columns[utils.FNO_COL_IDX['strikePrice']]],
-                'optionType': r[self.columns[utils.FNO_COL_IDX['optionType']]],
-                'open': r[self.columns[utils.FNO_COL_IDX['open']]],
-                'high': r[self.columns[utils.FNO_COL_IDX['high']]],
-                'low': r[self.columns[utils.FNO_COL_IDX['low']]],
-                'close': r[self.columns[utils.FNO_COL_IDX['close']]],
-                'settlePrice': r[self.columns[utils.FNO_COL_IDX['settlePrice']]],
-                'contracts': r[self.columns[utils.FNO_COL_IDX['contracts']]],
-                'valueInLakhs': r[self.columns[utils.FNO_COL_IDX['valueInLakhs']]],
-                'openInterest': r[self.columns[utils.FNO_COL_IDX['openInterest']]],
-                'changeInOpenInterest': r[self.columns[utils.FNO_COL_IDX['changeInOpenInterest']]],
-                'timeStamp': r[self.columns[utils.FNO_COL_IDX['timeStamp']]]
+                'symbol'                : r[self.columns[utils.FNO_COL_IDX['symbol']]],
+                'expiryDate'            : r[self.columns[utils.FNO_COL_IDX['expiryDate']]],
+                'strikePrice'           : r[self.columns[utils.FNO_COL_IDX['strikePrice']]],
+                'optionType'            : r[self.columns[utils.FNO_COL_IDX['optionType']]],
+                'open'                  : r[self.columns[utils.FNO_COL_IDX['open']]],
+                'high'                  : r[self.columns[utils.FNO_COL_IDX['high']]],
+                'low'                   : r[self.columns[utils.FNO_COL_IDX['low']]],
+                'close'                 : r[self.columns[utils.FNO_COL_IDX['close']]],
+                'settlePrice'           : r[self.columns[utils.FNO_COL_IDX['settlePrice']]],
+                'contracts'             : r[self.columns[utils.FNO_COL_IDX['contracts']]],
+                'valueInLakhs'          : r[self.columns[utils.FNO_COL_IDX['valueInLakhs']]],
+                'openInterest'          : r[self.columns[utils.FNO_COL_IDX['openInterest']]],
+                'changeInOpenInterest'  : r[self.columns[utils.FNO_COL_IDX['changeInOpenInterest']]],
+                'timeStamp'             : r[self.columns[utils.FNO_COL_IDX['timeStamp']]]
             }
             return rowDict
 
@@ -212,20 +212,20 @@ class ReadFnOCSV:
         # Nested function
         def getDictFromRows(r):
             rowDict = {
-                'symbol': r[self.columns[utils.FNO_COL_IDX['symbol']]],
-                'expiryDate': r[self.columns[utils.FNO_COL_IDX['expiryDate']]],
+                'symbol'                : r[self.columns[utils.FNO_COL_IDX['symbol']]],
+                'expiryDate'            : r[self.columns[utils.FNO_COL_IDX['expiryDate']]],
                 # 'strikePrice'               : r[self.columns[utils.FNO_COL_IDX['strikePrice']]],
                 # 'optionType'                : r[self.columns[utils.FNO_COL_IDX['optionType']]],
-                'open': r[self.columns[utils.FNO_COL_IDX['open']]],
-                'high': r[self.columns[utils.FNO_COL_IDX['high']]],
-                'low': r[self.columns[utils.FNO_COL_IDX['low']]],
-                'close': r[self.columns[utils.FNO_COL_IDX['close']]],
-                'settlePrice': r[self.columns[utils.FNO_COL_IDX['settlePrice']]],
-                'contracts': r[self.columns[utils.FNO_COL_IDX['contracts']]],
-                'valueInLakhs': r[self.columns[utils.FNO_COL_IDX['valueInLakhs']]],
-                'openInterest': r[self.columns[utils.FNO_COL_IDX['openInterest']]],
-                'changeInOpenInterest': r[self.columns[utils.FNO_COL_IDX['changeInOpenInterest']]],
-                'timeStamp': r[self.columns[utils.FNO_COL_IDX['timeStamp']]]
+                'open'                  : r[self.columns[utils.FNO_COL_IDX['open']]],
+                'high'                  : r[self.columns[utils.FNO_COL_IDX['high']]],
+                'low'                   : r[self.columns[utils.FNO_COL_IDX['low']]],
+                'close'                 : r[self.columns[utils.FNO_COL_IDX['close']]],
+                'settlePrice'           : r[self.columns[utils.FNO_COL_IDX['settlePrice']]],
+                'contracts'             : r[self.columns[utils.FNO_COL_IDX['contracts']]],
+                'valueInLakhs'          : r[self.columns[utils.FNO_COL_IDX['valueInLakhs']]],
+                'openInterest'          : r[self.columns[utils.FNO_COL_IDX['openInterest']]],
+                'changeInOpenInterest'  : r[self.columns[utils.FNO_COL_IDX['changeInOpenInterest']]],
+                'timeStamp'             : r[self.columns[utils.FNO_COL_IDX['timeStamp']]]
             }
             return rowDict
 
@@ -269,20 +269,20 @@ class ReadFnOCSV:
         # Nested function
         def getDictFromRows(r):
             rowDict = {
-                'symbol': r[self.columns[utils.FNO_COL_IDX['symbol']]],
-                'expiryDate': r[self.columns[utils.FNO_COL_IDX['expiryDate']]],
-                'strikePrice': r[self.columns[utils.FNO_COL_IDX['strikePrice']]],
-                'optionType': r[self.columns[utils.FNO_COL_IDX['optionType']]],
-                'open': r[self.columns[utils.FNO_COL_IDX['open']]],
-                'high': r[self.columns[utils.FNO_COL_IDX['high']]],
-                'low': r[self.columns[utils.FNO_COL_IDX['low']]],
-                'close': r[self.columns[utils.FNO_COL_IDX['close']]],
-                'settlePrice': r[self.columns[utils.FNO_COL_IDX['settlePrice']]],
-                'contracts': r[self.columns[utils.FNO_COL_IDX['contracts']]],
-                'valueInLakhs': r[self.columns[utils.FNO_COL_IDX['valueInLakhs']]],
-                'openInterest': r[self.columns[utils.FNO_COL_IDX['openInterest']]],
-                'changeInOpenInterest': r[self.columns[utils.FNO_COL_IDX['changeInOpenInterest']]],
-                'timeStamp': r[self.columns[utils.FNO_COL_IDX['timeStamp']]]
+                'symbol'                : r[self.columns[utils.FNO_COL_IDX['symbol']]],
+                'expiryDate'            : r[self.columns[utils.FNO_COL_IDX['expiryDate']]],
+                'strikePrice'           : r[self.columns[utils.FNO_COL_IDX['strikePrice']]],
+                'optionType'            : r[self.columns[utils.FNO_COL_IDX['optionType']]],
+                'open'                  : r[self.columns[utils.FNO_COL_IDX['open']]],
+                'high'                  : r[self.columns[utils.FNO_COL_IDX['high']]],
+                'low'                   : r[self.columns[utils.FNO_COL_IDX['low']]],
+                'close'                 : r[self.columns[utils.FNO_COL_IDX['close']]],
+                'settlePrice'           : r[self.columns[utils.FNO_COL_IDX['settlePrice']]],
+                'contracts'             : r[self.columns[utils.FNO_COL_IDX['contracts']]],
+                'valueInLakhs'          : r[self.columns[utils.FNO_COL_IDX['valueInLakhs']]],
+                'openInterest'          : r[self.columns[utils.FNO_COL_IDX['openInterest']]],
+                'changeInOpenInterest'  : r[self.columns[utils.FNO_COL_IDX['changeInOpenInterest']]],
+                'timeStamp'             : r[self.columns[utils.FNO_COL_IDX['timeStamp']]]
             }
             return rowDict
 
@@ -328,20 +328,20 @@ class ReadFnOCSV:
         # Nested function
         def getDictFromRows(r):
             rowDict = {
-                'symbol': r[self.columns[utils.FNO_COL_IDX['symbol']]],
-                'expiryDate': r[self.columns[utils.FNO_COL_IDX['expiryDate']]],
+                'symbol'                    : r[self.columns[utils.FNO_COL_IDX['symbol']]],
+                'expiryDate'                : r[self.columns[utils.FNO_COL_IDX['expiryDate']]],
                 # 'strikePrice'               : r[self.columns[utils.FNO_COL_IDX['strikePrice']]],
                 # 'optionType'                : r[self.columns[utils.FNO_COL_IDX['optionType']]],
-                'open': r[self.columns[utils.FNO_COL_IDX['open']]],
-                'high': r[self.columns[utils.FNO_COL_IDX['high']]],
-                'low': r[self.columns[utils.FNO_COL_IDX['low']]],
-                'close': r[self.columns[utils.FNO_COL_IDX['close']]],
-                'settlePrice': r[self.columns[utils.FNO_COL_IDX['settlePrice']]],
-                'contracts': r[self.columns[utils.FNO_COL_IDX['contracts']]],
-                'valueInLakhs': r[self.columns[utils.FNO_COL_IDX['valueInLakhs']]],
-                'openInterest': r[self.columns[utils.FNO_COL_IDX['openInterest']]],
-                'changeInOpenInterest': r[self.columns[utils.FNO_COL_IDX['changeInOpenInterest']]],
-                'timeStamp': r[self.columns[utils.FNO_COL_IDX['timeStamp']]]
+                'open'                      : r[self.columns[utils.FNO_COL_IDX['open']]],
+                'high'                      : r[self.columns[utils.FNO_COL_IDX['high']]],
+                'low'                       : r[self.columns[utils.FNO_COL_IDX['low']]],
+                'close'                     : r[self.columns[utils.FNO_COL_IDX['close']]],
+                'settlePrice'               : r[self.columns[utils.FNO_COL_IDX['settlePrice']]],
+                'contracts'                 : r[self.columns[utils.FNO_COL_IDX['contracts']]],
+                'valueInLakhs'              : r[self.columns[utils.FNO_COL_IDX['valueInLakhs']]],
+                'openInterest'              : r[self.columns[utils.FNO_COL_IDX['openInterest']]],
+                'changeInOpenInterest'      : r[self.columns[utils.FNO_COL_IDX['changeInOpenInterest']]],
+                'timeStamp'                 : r[self.columns[utils.FNO_COL_IDX['timeStamp']]]
             }
             return rowDict
 

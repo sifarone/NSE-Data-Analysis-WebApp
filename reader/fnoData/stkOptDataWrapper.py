@@ -24,11 +24,11 @@ i.e. dailyData is now of the following form in memory
 '''
 class StkOptDataWrapper:  # Identifier key = (symbol, expiryDate, strikePrice, optionType)
     def __init__(self, stkOptionData):
-        self.symbol = stkOptionData['symbol']
-        self.expiryDate = stkOptionData['expiryDate']
-        self.strikePrice = stkOptionData['strikePrice']
-        self.optionType = stkOptionData['optionType']
-        self.dailyData = {}  # Here instead of List (as in DB), construct a dictionary with date as key for each daily data structure
+        self.symbol         = stkOptionData['symbol']
+        self.expiryDate     = stkOptionData['expiryDate']
+        self.strikePrice    = stkOptionData['strikePrice']
+        self.optionType     = stkOptionData['optionType']
+        self.dailyData      = {}  # Here instead of List (as in DB), construct a dictionary with date as key for each daily data structure
         for dd in stkOptionData['dailyData']:
             data = stkOptDailyDataWrapper.StkOptDailyDataWrapper(dd)
 
@@ -55,10 +55,10 @@ class StkOptDataWrapper:  # Identifier key = (symbol, expiryDate, strikePrice, o
 
     def getUniqueIdKeysAsDict(self):
         key = {
-            'symbol': self.symbol,
-            'expiryDate': self.expiryDate,
-            'strikePrice': self.strikePrice,
-            'optionType': self.optionType
+            'symbol'        : self.symbol,
+            'expiryDate'    : self.expiryDate,
+            'strikePrice'   : self.strikePrice,
+            'optionType'    : self.optionType
         }
         return key
 

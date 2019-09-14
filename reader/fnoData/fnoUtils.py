@@ -20,74 +20,74 @@ instruments = {
  'HIGH', 'LOW', 'CLOSE', 'SETTLE_PR', 'CONTRACTS', 'VAL_INLAKH', 'OPEN_INT', 'CHG_IN_OI', 'TIMESTAMP']
  '''
 FNO_COL_IDX = {
-    "instrument": 0,
-    "symbol": 1,
-    "expiryDate": 2,
-    "strikePrice": 3,
-    "optionType": 4,
-    "open": 5,
-    "high": 6,
-    "low": 7,
-    "close": 8,
-    "settlePrice": 9,
-    "contracts": 10,
-    "valueInLakhs": 11,
-    "openInterest": 12,
-    "changeInOpenInterest": 13,
+    "instrument"                : 0,
+    "symbol"                    : 1,
+    "expiryDate"                : 2,
+    "strikePrice"               : 3,
+    "optionType"                : 4,
+    "open"                      : 5,
+    "high"                      : 6,
+    "low"                       : 7,
+    "close"                     : 8,
+    "settlePrice"               : 9,
+    "contracts"                 : 10,
+    "valueInLakhs"              : 11,
+    "openInterest"              : 12,
+    "changeInOpenInterest"      : 13,
     "timeStamp": 14
 }
 
 # BhavData Fields
 stkOptDailyDataFields = {
-    'date': 'date',
-    'stkOptOpenPrice': 'stkOptOpenPrice',
-    'stkOptHighPrice': 'stkOptHighPrice',
-    'stkOptLowPrice': 'stkOptLowPrice',
-    'stkOptClosePrice': 'stkOptClosePrice',
-    'stkOptSettlePrice': 'stkOptSettlePrice',
-    'stkOptContracts': 'stkOptContracts',
-    'stkOptValueInLakhs': 'stkOptValueInLakhs',
-    'stkOptOpenInterest': 'stkOptOpenInterest',
-    'stkOptChangeInOpenInterest': 'stkOptChangeInOpenInterest'
+    'date'                          : 'date',
+    'stkOptOpenPrice'               : 'stkOptOpenPrice',
+    'stkOptHighPrice'               : 'stkOptHighPrice',
+    'stkOptLowPrice'                : 'stkOptLowPrice',
+    'stkOptClosePrice'              : 'stkOptClosePrice',
+    'stkOptSettlePrice'             : 'stkOptSettlePrice',
+    'stkOptContracts'               : 'stkOptContracts',
+    'stkOptValueInLakhs'            : 'stkOptValueInLakhs',
+    'stkOptOpenInterest'            : 'stkOptOpenInterest',
+    'stkOptChangeInOpenInterest'    : 'stkOptChangeInOpenInterest'
 }
 
 stkFutDailyDataFields = {
-    'date': 'date',
-    'stkFutOpenPrice': 'stkFutOpenPrice',
-    'stkFutHighPrice': 'stkFutHighPrice',
-    'stkFutLowPrice': 'stkFutLowPrice',
-    'stkFutClosePrice': 'stkFutClosePrice',
-    'stkFutSettlePrice': 'stkFutSettlePrice',
-    'stkFutContracts': 'stkFutContracts',
-    'stkFutValueInLakhs': 'stkFutValueInLakhs',
-    'stkFutOpenInterest': 'stkFutOpenInterest',
-    'stkFutChangeInOpenInterest': 'stkFutChangeInOpenInterest'
+    'date'                          : 'date',
+    'stkFutOpenPrice'               : 'stkFutOpenPrice',
+    'stkFutHighPrice'               : 'stkFutHighPrice',
+    'stkFutLowPrice'                : 'stkFutLowPrice',
+    'stkFutClosePrice'              : 'stkFutClosePrice',
+    'stkFutSettlePrice'             : 'stkFutSettlePrice',
+    'stkFutContracts'               : 'stkFutContracts',
+    'stkFutValueInLakhs'            : 'stkFutValueInLakhs',
+    'stkFutOpenInterest'            : 'stkFutOpenInterest',
+    'stkFutChangeInOpenInterest'    : 'stkFutChangeInOpenInterest'
 }
 
 idxOptDailyDataFields = {
-    'date': 'date',
-    'idxOptOpenPrice': 'idxOptOpenPrice',
-    'idxOptHighPrice': 'idxOptHighPrice',
-    'idxOptLowPrice': 'idxOptLowPrice',
-    'idxOptClosePrice': 'idxOptClosePrice',
-    'idxOptSettlePrice': 'idxOptSettlePrice',
-    'idxOptContracts': 'idxOptContracts',
-    'idxOptValueInLakhs': 'idxOptValueInLakhs',
-    'idxOptOpenInterest': 'idxOptOpenInterest',
-    'idxOptChangeInOpenInterest': 'idxOptChangeInOpenInterest'
+    'date'                          : 'date',
+    'idxOptOpenPrice'               : 'idxOptOpenPrice',
+    'idxOptHighPrice'               : 'idxOptHighPrice',
+    'idxOptLowPrice'                : 'idxOptLowPrice',
+    'idxOptClosePrice'              : 'idxOptClosePrice',
+    'idxOptSettlePrice'             : 'idxOptSettlePrice',
+    'idxOptContracts'               : 'idxOptContracts',
+    'idxOptValueInLakhs'            : 'idxOptValueInLakhs',
+    'idxOptOpenInterest'            : 'idxOptOpenInterest',
+    'idxOptChangeInOpenInterest'    : 'idxOptChangeInOpenInterest'
 }
 
 idxFutDailyDataFields = {
-    'date': 'date',
-    'idxFutOpenPrice': 'idxFutOpenPrice',
-    'idxFutHighPrice': 'idxFutHighPrice',
-    'idxFutLowPrice': 'idxFutLowPrice',
-    'idxFutClosePrice': 'idxFutClosePrice',
-    'idxFutSettlePrice': 'idxFutSettlePrice',
-    'idxFutContracts': 'idxFutContracts',
-    'idxFutValueInLakhs': 'idxFutValueInLakhs',
-    'idxFutOpenInterest': 'idxFutOpenInterest',
-    'idxFutChangeInOpenInterest': 'idxFutChangeInOpenInterest'
+    'date'                          : 'date',
+    'idxFutOpenPrice'               : 'idxFutOpenPrice',
+    'idxFutHighPrice'               : 'idxFutHighPrice',
+    'idxFutLowPrice'                : 'idxFutLowPrice',
+    'idxFutClosePrice'              : 'idxFutClosePrice',
+    'idxFutSettlePrice'             : 'idxFutSettlePrice',
+    'idxFutContracts'               : 'idxFutContracts',
+    'idxFutValueInLakhs'            : 'idxFutValueInLakhs',
+    'idxFutOpenInterest'            : 'idxFutOpenInterest',
+    'idxFutChangeInOpenInterest'    : 'idxFutChangeInOpenInterest'
 }
 
 

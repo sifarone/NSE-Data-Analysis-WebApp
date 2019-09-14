@@ -33,8 +33,9 @@ const SigninAPI = 'http://' + DATA_SERVER + ':' + WRITE_SERVER_PORT + '/signin';
 
 // --- Kubernetes APIS
 const CashStockSymbolListAPI = 'https://' + DATA_SERVER + '/read/api/cash';
-const FnOStockSymbolListAPI = 'https://' + DATA_SERVER + '/read/api/fno';
-const FnOIndexSymbolListAPI = 'https://' + DATA_SERVER + '/read/api/index';
+const IndexSymbolListAPI = 'https://' + DATA_SERVER + '/read/api/index';
+const FnOStockSymbolListAPI = 'https://' + DATA_SERVER + '/read/api/fnostock';
+const FnOIndexSymbolListAPI = 'https://' + DATA_SERVER + '/read/api/fnoindex';
 const StockOptionInfoAPI = 'https://' + DATA_SERVER + '/read/api/fno/stkopt/info';
 const StockFutureInfoAPI = 'https://' + DATA_SERVER + '/read/api/fno/stkfut/info';
 const IndexOptionInfoAPI = 'https://' + DATA_SERVER + '/read/api/fno/idxopt/info';
@@ -44,8 +45,10 @@ const CashDataAPI = 'https://' + DATA_SERVER + '/read/api/cash/data?symbol=';
 const ChartDataAPI = 'https://' + DATA_SERVER + '/read/api/post/charting';
 const AdminInitJobsAPI = 'https://' + DATA_SERVER + '/read/api/admin';
 const AdminUploadCashCSVFileAPI = 'https://' + DATA_SERVER + '/write/api/admin/upload/cashcsv';
+const AdminUploadArchivedCashCSVFileAPI = 'https://' + DATA_SERVER + '/write/api/admin/upload/archivedcashcsv';
 const AdminUploadFnOCSVFileAPI = 'https://' + DATA_SERVER + '/write/api/admin/upload/fnocsv';
 const AdminUploadIndexCSVFileAPI = 'https://' + DATA_SERVER + '/write/api/admin/upload/indexcsv';
+const AdminUploadArchivedIndexCSVFileAPI = 'https://' + DATA_SERVER + '/write/api/admin/upload/archivedindexcsv';
 
 const AdminWriteServerJobsAPI = 'https://' + DATA_SERVER + '/write/api/admin';
 
@@ -54,21 +57,25 @@ const SigninAPI = 'https://' + DATA_SERVER + '/write/signin';
 
 export {
     CashStockSymbolListAPI,
+    IndexSymbolListAPI,
     FnOStockSymbolListAPI,
     FnOIndexSymbolListAPI,
+
     StockOptionInfoAPI,
     StockFutureInfoAPI,
     IndexOptionInfoAPI,
     IndexFutureInfoAPI,
+
     CashDataAPI,
     ChartDataAPI,
     AdminInitJobsAPI,
     AdminWriteServerJobsAPI,
 
-    //AdminUploadCSVDataAPI,
     AdminUploadCashCSVFileAPI,
+    AdminUploadArchivedCashCSVFileAPI,
     AdminUploadFnOCSVFileAPI,
     AdminUploadIndexCSVFileAPI,
+    AdminUploadArchivedIndexCSVFileAPI,
 
     LoginAPI,
     SigninAPI

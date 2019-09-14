@@ -1,6 +1,7 @@
 
 const initialState = { 
-    cashStockSymbolList : [],   
+    cashStockSymbolList : [],
+    indexSymbolList     : [],
     fnoStockSymbolList  : [],
     fnoIndexSymbolList  : [],
     stockOptionInfo     : {},
@@ -8,6 +9,7 @@ const initialState = {
     indexOptionInfo     : {},
     indexFutureInfo     : {},
     cashData            : {},
+    indexData           : {},
     cashFnOData         : {},
     stk_pe_oivsdoi      : {},
     stk_ce_oivsdoi      : {},
@@ -17,6 +19,9 @@ const initialState = {
     idx_ce_oivsdoi      : {},
     stk_optionChain     : {},
     idx_optionChain     : {},
+    indexInputParams    : {
+        symbol          : ''
+    },
     combinedStkFnoInputParams: {
         symbol          : '',
         stkOptExpDate   : '',
@@ -54,6 +59,13 @@ export const chartReducer = (state=initialState, action) => {
 
         case 'CHART_CASH_DATA':
             console.log('CHART_CASH_DATA =====> state: ', state);
+            return {
+                ...state,
+                ...action.payload
+            }
+
+        case 'CHART_INDEX_DATA':
+            console.log('CHART_INDEX_DATA =====> state: ', state);
             return {
                 ...state,
                 ...action.payload

@@ -6,48 +6,48 @@ dateFormatString = "%d-%b-%Y"
 
 # BhavData Fields
 dailyDataFields = {
-    'date': 'date',
-    'openValue': 'openValue',
-    'highValue': 'highValue',
-    'lowValue': 'lowValue',
-    'closingValue': 'closingValue',
-    'pointsChange': 'pointsChange',
-    'percentChange': 'percentChange',
-    'volume': 'volume',
-    'turnover': 'turnover',
-    'peRatio': 'peRatio',
-    'pbRatio': 'pbRatio',
-    'divYield': 'divYield'
+    'date'              : 'date',
+    'openValue'         : 'openValue',
+    'highValue'         : 'highValue',
+    'lowValue'          : 'lowValue',
+    'closingValue'      : 'closingValue',
+    'pointsChange'      : 'pointsChange',
+    'percentChange'     : 'percentChange',
+    'volume'            : 'volume',
+    'turnover'          : 'turnover',
+    'peRatio'           : 'peRatio',
+    'pbRatio'           : 'pbRatio',
+    'divYield'          : 'divYield'
 }
 
 INDICES_COL_IDX = {
-    'indexName': 0,
-    'date': 1,
-    'openValue': 2,
-    'highValue': 3,
-    'lowValue': 4,
-    'closingValue': 5,
-    'pointsChange': 6,
-    'percentChange': 7,
-    'volume': 8,
-    'turnover': 9,
-    'peRatio': 10,
-    'pbRatio': 11,
-    'divYield': 12
+    'indexName'     : 0,
+    'date'          : 1,
+    'openValue'     : 2,
+    'highValue'     : 3,
+    'lowValue'      : 4,
+    'closingValue'  : 5,
+    'pointsChange'  : 6,
+    'percentChange' : 7,
+    'volume'        : 8,
+    'turnover'      : 9,
+    'peRatio'       : 10,
+    'pbRatio'       : 11,
+    'divYield'      : 12
 }
 
 # Archived Index has less fields and different column positioning from "https://www.niftyindices.com/reports/historical-data"
 # Combine two csv files manually, add the index name in first column of the sheet and then upload
 STOCK_ARCHIVED_COL_IDX = {
-    'indexName': 0,
-    'date': 1,
-    'openValue': 2,
-    'highValue': 3,
-    'lowValue': 4,
-    'closingValue': 5,
-    'peRatio': 6,
-    'pbRatio': 7,
-    'divYield': 8
+    'indexName'     : 0,
+    'date'          : 1,
+    'openValue'     : 2,
+    'highValue'     : 3,
+    'lowValue'      : 4,
+    'closingValue'  : 5,
+    'peRatio'       : 6,
+    'pbRatio'       : 7,
+    'divYield'      : 8
 }
 
 

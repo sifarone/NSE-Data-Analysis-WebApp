@@ -94,15 +94,15 @@ class ReadArchivedIndexCSV:
         # Nested function
         def getDictFromRows(r):
             rowDict = {
-                'indexName'                    : r[self.columns[utils.STOCK_ARCHIVED_COL_IDX['indexName']]],
-                'date'                      : r[self.columns[utils.STOCK_ARCHIVED_COL_IDX['date']]],
-                'openValue'                 : r[self.columns[utils.STOCK_ARCHIVED_COL_IDX['openValue']]],
-                'highValue'                 : r[self.columns[utils.STOCK_ARCHIVED_COL_IDX['highValue']]],
-                'lowValue'                 : r[self.columns[utils.STOCK_ARCHIVED_COL_IDX['lowValue']]],
+                'indexName'                     : r[self.columns[utils.STOCK_ARCHIVED_COL_IDX['indexName']]],
+                'date'                          : r[self.columns[utils.STOCK_ARCHIVED_COL_IDX['date']]],
+                'openValue'                     : r[self.columns[utils.STOCK_ARCHIVED_COL_IDX['openValue']]],
+                'highValue'                     : r[self.columns[utils.STOCK_ARCHIVED_COL_IDX['highValue']]],
+                'lowValue'                      : r[self.columns[utils.STOCK_ARCHIVED_COL_IDX['lowValue']]],
                 'closingValue'                  : r[self.columns[utils.STOCK_ARCHIVED_COL_IDX['closingValue']]],
-                'peRatio'                 : r[self.columns[utils.STOCK_ARCHIVED_COL_IDX['peRatio']]],
-                'pbRatio'                : r[self.columns[utils.STOCK_ARCHIVED_COL_IDX['pbRatio']]],
-                'divYield'                : r[self.columns[utils.STOCK_ARCHIVED_COL_IDX['divYield']]]
+                'peRatio'                       : r[self.columns[utils.STOCK_ARCHIVED_COL_IDX['peRatio']]],
+                'pbRatio'                       : r[self.columns[utils.STOCK_ARCHIVED_COL_IDX['pbRatio']]],
+                'divYield'                      : r[self.columns[utils.STOCK_ARCHIVED_COL_IDX['divYield']]]
             }
             return rowDict
 

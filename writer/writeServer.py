@@ -18,13 +18,13 @@ async def handleCashMarketDataRequest(request):
     return web.json_response(result)
 
 @routes.post('/api/write/fno/data')
-async def handleCashMarketDataRequest(request):
+async def handleFnOMarketDataRequest(request):
     print('Recieved: Load FnO Data request')
     result = await fnoDataWriteAPIs.loadFnoDataToDB(request)
     return web.json_response(result)
 
 @routes.post('/api/write/index/data')
-async def handleCashMarketDataRequest(request):
+async def handleIndexMarketDataRequest(request):
     print('Recieved: Load Index Data request')
     result = await indexDataWriteAPIs.loadIndexDataToDB(request)
     return web.json_response(result)
