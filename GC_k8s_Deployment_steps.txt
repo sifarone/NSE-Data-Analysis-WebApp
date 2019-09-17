@@ -156,6 +156,18 @@ Finally Deployment:
 	4. Go to Tracis-CI website and see the logs for our repository.
 	5. If everything went well then we can see all our pods running successfully under the 'Workloads' section of the GCloud dashboard.
 
+A Workflow for Changing in Prod:
+	1. Checkout a branch
+	2. Make changes
+	3. commit changes
+	4. Push to github branch
+	5. create a PR
+	6. wait for tests to show up green
+	7. Merge the PR to 'master' branch
+	8. See changes appear on Prod.
+
+Use Github's create pull request and merge for making changes.
+
 			
 
 
