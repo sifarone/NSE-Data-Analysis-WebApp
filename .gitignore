@@ -4,6 +4,7 @@
 /.idea/
 
 reader/__pycache__/
+reader/__pycache__/config.cpython-37.pyc
 reader/cashData/__pycache__/
 reader/fnoData/__pycache__/
 reader/indexData/__pycache__/
