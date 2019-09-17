@@ -1,0 +1,170 @@
+StephenGrider github link: https://github.com/StephenGrider/DockerCasts/tree/master/complex
+
+Steps for deployment on Google Cloud's Kubernetes engine:
+
+(Also explore AWS free tier) -- Done. Does not suit my needs.
+
+	1. Set up Github Rep
+	2. Set up Travis CI repo for building the images
+	3. Create Google Cloud Project
+	4. Enable Billing for the Project
+	5. Add deployment scripts to the Repo
+
+Travis CI:
+	The purpose of travis is to test our code and once the test passes, build and deploy the code.
+	Link the github repo to the Travis CI tool which will build a new image every time a change has been been pushed to the github repository.
+	Before creating a travis.yaml file, setup a Google cloud project first as we will be needing some info from that to put some info from that to the travis.yaml file.
+
+Google Cloud Kubernetes engine:
+	Create an k8s cluster with three/five nodes on 1 cpu and 3.7GB RAM each.
+
+Travis config file ( .travis.yaml ) :
+	1. Install Google Cloud SDK CLI : 
+		- In order for travis to test and deploy our code on the google k8s engine, it has to somehow have a way to reach out and communicate with the google cloud k8s cluster and
+		make changes to it (essentially run a set of configuration files and apply them to the kubernetes engine). To do so, we will install a google cloud sdk. This is a CLI, which
+		will alow us to remotely interact and control the k8s cluster in google cloud.
+		Unfortunately this SDK does not come installed with travis, hence we have to download and install this SDK everytime we run our Travis Build.
+
+	2. Configure the SDK with our Google Cloud Auth Info:
+	
+	3. Login to Docker CLI
+
+	4. Build the 'test' version of the project.
+
+	5. Run tests (if any)
+
+	6. If tests are successful, run a script to deploy newest images. (This is a seprate script outside of .travis.yaml)
+
+	7. Build all our images, tag each one, push each to docker hub.
+
+	8. Apply all configs in the 'k8s' folder.
+
+	9. Imperatively set latest images on each deployment to use.
+
+Create the Authentication secret encrypyed file to be put into .travis.yaml file:
+	1. Create a Service account on Google Cloud. (in IAM & Admin section, Project role as 'Kubernetes Engine Admin', file type as json in 'furnish a new private key' section)
+	2. Download service account credentials in a json file.
+	3. Download and intall the Travis CLI
+	4. Encrypt and upload the encrypted json file to our Travis account
+	5. In travis.yaml, add code to unencrypt the json file and load it into Google cloud SDK
+
+	*** DO NOT IN ANY CASE EXPOSE THE DOWNLOADED JSON (PLAIN TEXT) FILE TO OUTSIDE WORLD AND NEVER PUSH IT ON GITHUB. ***
+
+	- Travis CLI requires ruby to be installed to run.
+		1. Since installing Ruby is a pain.
+		2. We will get a Docker image that has Ruby pre-installed, then we will install travis CLI in there.
+		3. Use this installed travis CLI to encrypt the credentials json file and upload the encrypted file to Travis servers.
+		4. After step 3 delete the the credential file from the system to be absolutely safe.
+
+		Commands to do the above 4 steps:
+			1. docker run -it -v $(pwd):/app ruby:2.3 sh     -----(sets up a volume as well)
+			2. gem install travis --no-rdoc --no-ri
+			3. gem install travis 
+			4. travis login 				------(Use your github login and password)
+			5. --- copy json file into the 'volumed' directory so we can use it in the container and rename it to 'service-account.json' ---
+			6. travis encrypt-file service-account.json -r sifarone/gce-k8s-deployment 	-----( the last term after '-r' is the respository it is linked to)
+					- creates a ENCRYPTED 'service-account.json.enc' file. And now deleted the original 'service-account.json' file.
+					- this encrypts and binds the encrypted authentication to that particular repository.
+					- Once we run this command, we will get a couple of directions.
+					- There will be a command displayed which needs to be added to our build file ( 'before_install' stage in our .travis.yaml file)
+					- Make sure to add the ENCRYPTED 'service-account.json.enc' file to the git repository.
+					- Make sure NOT TO ADD 'service-account.json' file to the git repository.
+
+	6. Set-up the Docker user-name  and password environment variable (DOCKER_USERNAME & DOCKER_PASSWORD) in travis dashboard under settings section of the respective project. 
+	The spelling of these environment varialble should be exactly the same as specified in the .travis.yaml file.
+
+deply.sh:
+	1. Some changes to use the latest image we push for deployment automatically. (using the $GIT_SHA to get a unique identifier each time for tagging the image)
+		- to get the GIT SHA for the latest commit made, run the following command:
+			> git rev-parse HEAD
+
+		- to see all the different SHA's for all the commits, run the following command:
+			> git log
+
+		- In case of any issue with the website we can checkout the exact code running inside the containers by checkin out the SHA tag of the current image being used.
+			> git checkout SHA
+
+Some more steps to do on Google Cloud:
+	1. Create a secret on the k8s cluster to store the mongoDB Password (If we use it).
+	2. Click the 'Activate cloud shell' icon on the top right corner of your GCloud project dashboard.
+	3. This will give a shell that is running in the context of our cluster.
+	4. We can run all kubectl commands that we ran locally.
+	5. In the command shell, do the following to configure it for our cluster.
+		> gcloud config set project <Project-ID corresponding to our project from Google Cloud>
+		> gcloud config set compute/zone <zone/location we have selected while setting up the cluster on Google Cloud>
+		> gcloud container clusters get-credentials <Name of our k8s cluster on GCloud>
+	6. The above 3 commands have to be run once and the GCloud CLI will be configured in the context of our project.
+	7. Now we can do commands like 'kubectl get pods' etc.
+	8. Now we create a secret for MongoDB password from this shell
+		> kubectl create secret generic <mongodb-password> --from-literal <MONGODBPASSWORD=actualpassword>
+	9. Once the secret is created we can see it under the 'Configuration' tab on the dashboard.
+
+Configure Ingress:
+	1. The GCloud k8s cluster has no idea about the Nginx ingress service we configured in our local minikube setup.
+	2. We have to install it as a seperate service on the GCloud k8s cluster. It will create some additional services for load balancer from the GCloud.
+	3. We can use the madatory command from the 'httpe://kubernetes.github.io/ingress-nginx/' link or we can use 'Helm'.
+	4. Nginx Ingress controller on GCloud can be installed via Helm using the chart stable/nginx-ingress from the official charts repository. To install the 
+	chart with the release name my-nginx, run the following command:
+		> helm install stable/nginx-ingress --name my-nginx
+
+		If the k8s cluster has RBAC enabled, then run: (RBAC = Role based access control, Enabled on Google Cloud by default)
+		> helm install stable/nginx-ingress --name my-nginx --set rbac.create=true
+
+	Steps:
+
+	Helm: is a program that we can use to administor third party software inside a kubernetes cluster.
+
+	Helm Setup: 
+		- when we install Helm, we get 2 pieces of software, 'Helm client' and 'Tiller Server'.
+		- Command we issue =====> Helm Client =====> Tiller Server (runs in the cluster as a pod and modifies it to make the changes)
+		- Install Helm 'From Script'
+			- Copy the 3 commands form the Helm website ('https://docs.helm.sh/usimg_helm/#quickstart-guide') 
+			and run them in the GCloud CLI shell on Google cloud running in the context of our cluster.
+		- DO NOT RUN 'helm init' just yet. We need to do some extra setup on the Google Cloud before we can run 'helm init' command.
+
+		Some Info Regarding clusters (RBAC):
+			- User Accounts: Identifies a 'person' administering our cluster.
+			- Service Accounts: Identifies a 'pod' administering a cluster
+			- ClusterRoleBinding: Authorizes an account to do a certain set of actions across the entire cluster.
+			- RoleBinding: Authorizes an account to do a certain set of actions in a single namespace.
+
+		- We need to give 'Tiller' the access level of 'ClusterRoleBinding'. Run following two commands in the GCloud shell to do this.
+			> kubectl create serviceaccount --namespace kube-system tiller ( Creates a new service account called tiller in the kube-system namespace)
+			> kubectl create clusterrolebinding tiller-cluster-rule --clusterrole=cluster-admin --serviceaccount=kube-system:tiller 
+				( Creates a new clusterrolebinding with the role 'cluster-admin' and assign it to service account 'tiller'
+
+		- After we have run the above two commands, then we can run 'helm init' command.
+			> helm init --service-account tiller --upgrade
+
+	Use Helm to install nginx-ingress:
+		- Run Command:
+			> helm install stable/nginx-ingress --name my-nginx --set rbac.create=true
+				- This will create quite a few resources.
+
+	Under 'Workload' section of the GCloud dashboard, we can see all our deployment pods. Till now we can see ingress-controller and ingres-default-backend.
+
+	Under 'Services' section of the GCloud dashboard, we can see 'Load balancer' under service-type coloumn with two endponts. These are the IP addresses that we will use to access
+	our website.
+
+	Under 'Network-Services' section of the GCloud dashboard, we can see the 'Load balancer' details that was created for us by the GCloud when we created the nginx-ingress using helm.
+	This load balancer controls the access to the nodes that we created while configuring our cluster.
+
+Finally Deployment:
+	1. Commit all our changes and push it to the master branch on github.
+	2. Travis CI will pickup the changes and build-deploy the changes on the Google kubernetes cluster automatically (ideal case :))
+	3. look for any typos in the config files in case of any errors.
+	4. Go to Tracis-CI website and see the logs for our repository.
+	5. If everything went well then we can see all our pods running successfully under the 'Workloads' section of the GCloud dashboard.
+
+			
+
+
+
+	
+
+
+	
+
+
+
+

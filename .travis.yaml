@@ -1,8 +1,30 @@
 sudo: required
+
 services:
   - docker
+
+env:
+  global:
+    - GIT_SHA=$(git rev-parse HEAD)
+    - CLOUDSDK_CORE_DISABLE_PROMPTS=1
+
 before_install:
+  - **** ADD THE COMMAND FROM THE TRAVIS ENCRYPT COMMAND ****
   - curl https://sdk.cloud.google.com | bash > /dev/null;
   - source $HOME/google-cloud-sdk/path.bash.inc
   - gcloud components update kubectl
   - gcloud auth activate-service-acc ount --key-file service-account.json
+  - gcloud config set project <Project-ID corresponding to our project from Google Cloud>
+  - gcloud config set compute/zone <zone/location we have selected while setting up the cluster on Google Cloud>
+  - gcloud container clusters get-credentials <Name of our k8s cluster on GCloud>
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - docker build -t sifarone/test-image -f <path to the test DOCKERFILE> <build context> // Not necessary for our project
+
+scripts:
+  - docker run sifarone/test-image <command to run the tests inside in this image> -- --coverage // Not necessary for our project
+
+deploy:
+  provide: script
+  script: bash ./deploy.sh
+  on:
+    branch: master
