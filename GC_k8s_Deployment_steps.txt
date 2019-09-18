@@ -183,7 +183,16 @@ Migration to HTTPS:
 			- Gets certificate and stores it in a secret.
 	6. Issuer Config file: Object telling cert Manager where to get the certificate from.
 	7. Certificate Config file: Object describing details about the certificate that should be obtained.
-	8. Once you get the certificate and store it in a secret on your cluster the go ahead and Reconfigure the nginx-ingress to tell it to use the certificate.
+	8. Merge and let travis deploy the project again.
+	9. Check for the certificate on the GCloud shell cli by typing the following commands:
+			> kubectl get certificates
+			> kubectl describe certificates
+				- look under 'Events' section of the output logs for steps undergone and their status
+				- a new secret should be created with the issued 
+			> kubectl get secrets
+	10. Once you get the certificate and stored in a secret on your cluster then go ahead and Reconfigure the nginx-ingress
+	    to tell it to use the certificate.
+
 
 			
 

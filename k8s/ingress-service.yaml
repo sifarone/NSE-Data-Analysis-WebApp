@@ -9,9 +9,34 @@ metadata:
         nginx.ingress.kubernetes.io/proxy-read-timeout: "7200"
         nginx.ingress.kubernetes.io/proxy-send-timeout: "7200"
         kubernetes.io/tls-acme: 'true'
+        # Following configs are done after getting the tls certificate to let the ingress know to use HTTPS now
+        certmanager.k8s.io/cluster-issuer: 'letsencrypt-prod'
+        nginx.ingress.kubernetes.io/ssl-redirect: 'true'
 spec:
+    #following section (tls:) is added after getting TLS certificate
+    tls:
+      - hosts:
+          - sifarone.com
+          - www.sifarone.com
+        secretName: sifarone-com
     rules:
-      - http:
+      - host: sifarone.com
+        http:
+          paths:
+            - path: /
+              backend:
+                  serviceName: ui-app-cluster-ip-service
+                  servicePort: 80
+            - path: /read/
+              backend:
+                  serviceName: read-server-cluster-ip-service
+                  servicePort: 60000
+            - path: /write/
+              backend:
+                  serviceName: write-server-cluster-ip-service
+                  servicePort: 50000
+      - host: www.sifarone.com
+        http:
           paths:
             - path: /
               backend:
