@@ -192,6 +192,8 @@ Migration to HTTPS:
 			> kubectl get secrets
 	10. Once you get the certificate and stored in a secret on your cluster then go ahead and Reconfigure the nginx-ingress
 	    to tell it to use the certificate.
+	11. After redeploying the code, go to 'Services' tab in GCloud dashboard and see the 'ingress-service' section to find
+		new routes added.
 
 
 			
