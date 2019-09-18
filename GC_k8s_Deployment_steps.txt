@@ -155,6 +155,7 @@ Finally Deployment:
 	3. look for any typos in the config files in case of any errors.
 	4. Go to Tracis-CI website and see the logs for our repository.
 	5. If everything went well then we can see all our pods running successfully under the 'Workloads' section of the GCloud dashboard.
+	6. Acces the website on the ip mentioned against ingress-controller in 'Services' section in GCloud dashboard.
 
 A Workflow for Changing in Prod:
 	1. Checkout a branch
@@ -167,6 +168,22 @@ A Workflow for Changing in Prod:
 	8. See changes appear on Prod.
 
 Use Github's create pull request and merge for making changes.
+
+Migration to HTTPS:
+	1. Use LetsEncrypt
+	2. Use Helm to install a plugin in our cluster to handle the pre-requisite handshake from LetsEncrypt server.
+	3. Buy domain from domains.google.com or someplace else
+	4. Use Helm to install 'cert-manager' into the GCloud k8s cluster
+		> helm install \
+			-- name cert-manager \
+			-- namespace kube-system \
+			stable/cert-manager
+	5. cert-manager: 
+			- Sets up infra to respond to HTTP challenge form the certificate issuing server.
+			- Gets certificate and stores it in a secret.
+	6. Issuer Config file: Object telling cert Manager where to get the certificate from.
+	7. Certificate Config file: Object describing details about the certificate that should be obtained.
+	8. Once you get the certificate and store it in a secret on your cluster the go ahead and Reconfigure the nginx-ingress to tell it to use the certificate.
 
 			
 
