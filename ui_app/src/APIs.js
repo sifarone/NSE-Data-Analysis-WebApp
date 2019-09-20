@@ -32,6 +32,7 @@ const SigninAPI = 'http://' + DATA_SERVER + ':' + WRITE_SERVER_PORT + '/signin';
 */
 
 // --- Kubernetes APIS
+/*
 const CashStockSymbolListAPI = 'https://' + DATA_SERVER + '/read/api/cash';
 const IndexSymbolListAPI = 'https://' + DATA_SERVER + '/read/api/index';
 const FnOStockSymbolListAPI = 'https://' + DATA_SERVER + '/read/api/fnostock';
@@ -54,6 +55,30 @@ const AdminWriteServerJobsAPI = 'https://' + DATA_SERVER + '/write/api/admin';
 
 const LoginAPI = 'https://' + DATA_SERVER + '/read/login';
 const SigninAPI = 'https://' + DATA_SERVER + '/write/signin';
+*/
+
+const CashStockSymbolListAPI = '/read/api/cash';
+const IndexSymbolListAPI = '/read/api/index';
+const FnOStockSymbolListAPI = '/read/api/fnostock';
+const FnOIndexSymbolListAPI = '/read/api/fnoindex';
+const StockOptionInfoAPI = '/read/api/fno/stkopt/info';
+const StockFutureInfoAPI = '/read/api/fno/stkfut/info';
+const IndexOptionInfoAPI = '/read/api/fno/idxopt/info';
+const IndexFutureInfoAPI = '/read/api/fno/idxfut/info';
+
+const CashDataAPI = '/read/api/cash/data?symbol=';
+const ChartDataAPI = '/read/api/post/charting';
+const AdminInitJobsAPI = '/read/api/admin';
+const AdminUploadCashCSVFileAPI = '/write/api/admin/upload/cashcsv';
+const AdminUploadArchivedCashCSVFileAPI = '/write/api/admin/upload/archivedcashcsv';
+const AdminUploadFnOCSVFileAPI = '/write/api/admin/upload/fnocsv';
+const AdminUploadIndexCSVFileAPI = '/write/api/admin/upload/indexcsv';
+const AdminUploadArchivedIndexCSVFileAPI = '/write/api/admin/upload/archivedindexcsv';
+
+const AdminWriteServerJobsAPI = '/write/api/admin';
+
+const LoginAPI = '/read/login';
+const SigninAPI = '/write/signin';
 
 export {
     CashStockSymbolListAPI,
