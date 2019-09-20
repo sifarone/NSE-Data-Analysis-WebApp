@@ -14,7 +14,10 @@ python3 -m pip install pymongo
 sudo python3.7 -m pip install mongoengine
 sudo python3.7 -m pip install flask
 
-robomongo gui:
+GIT: ---------------------------------------------
+git rm -r --cached ./k8s/issuer.yaml 
+
+robomongo gui: -------------------------------------------
 /usr/local/bin/robo3t/bin$ ./robo3t
 
 Mongo db backup: --------------------------------------------------------------

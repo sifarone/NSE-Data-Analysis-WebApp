@@ -14,8 +14,8 @@ spec:
         spec:
             containers:
               - name: read-server
-                image: sifarone/eod_analysis:read-server-3.0
-                #image: sifarone/eod_analysis:read-server-debug-2.0
+                #image: sifarone/eod_analysis:read-server-3.0
+                image: sifarone/k8s_read_server
                 ports:
                     - containerPort: 60000
                 env:

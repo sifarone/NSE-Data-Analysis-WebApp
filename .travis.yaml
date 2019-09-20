@@ -13,10 +13,10 @@ before_install:
   - curl https://sdk.cloud.google.com | bash > /dev/null;
   - source $HOME/google-cloud-sdk/path.bash.inc
   - gcloud components update kubectl
-  - gcloud auth activate-service-acc ount --key-file service-account.json
-  - gcloud config set project <Project-ID corresponding to our project from Google Cloud>
-  - gcloud config set compute/zone <zone/location we have selected while setting up the cluster on Google Cloud>
-  - gcloud container clusters get-credentials <Name of our k8s cluster on GCloud>
+  - gcloud auth activate-service-account --key-file service-account.json
+  - gcloud config set project sifarone-eod-analysis
+  - gcloud config set compute/zone asia-south1-a
+  - gcloud container clusters get-credentials sifarone-k8s-eod-analysis-cluster-1
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   #- docker build -t sifarone/test-image -f <path to the test DOCKERFILE> <build context> // Not necessary for our project
 

@@ -130,12 +130,16 @@ Configure Ingress:
 			- RoleBinding: Authorizes an account to do a certain set of actions in a single namespace.
 
 		- We need to give 'Tiller' the access level of 'ClusterRoleBinding'. Run following two commands in the GCloud shell to do this.
-			> kubectl create serviceaccount --namespace kube-system tiller ( Creates a new service account called tiller in the kube-system namespace)
+			> kubectl create serviceaccount --namespace kube-system tiller  // ( Creates a new service account called tiller in the kube-system namespace)
 			> kubectl create clusterrolebinding tiller-cluster-rule --clusterrole=cluster-admin --serviceaccount=kube-system:tiller 
 				( Creates a new clusterrolebinding with the role 'cluster-admin' and assign it to service account 'tiller'
 
 		- After we have run the above two commands, then we can run 'helm init' command.
 			> helm init --service-account tiller --upgrade
+
+		- Please note: by default, Tiller is deployed with an insecure 'allow unauthenticated users' policy.
+			To prevent this, run `helm init` with the --tiller-tls-verify flag.
+			For more information on securing your installation see: https://docs.helm.sh/using_helm/#securing-your-helm-installation
 
 	Use Helm to install nginx-ingress:
 		- Run Command:

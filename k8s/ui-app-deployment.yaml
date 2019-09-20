@@ -13,8 +13,8 @@ spec:
               component: ui-app
       spec:
           containers:
-            - name: client
-              #image: sifarone/eod_analysis:ui-react-app-1.0
-              image: sifarone/eod_analysis:ui-react-app-HTTPS-3.0
+            - name: client              
+              #image: sifarone/eod_analysis:ui-react-app-HTTPS-3.0
+              image: sifarone/k8s_ui_app
               ports:
                 - containerPort: 80
