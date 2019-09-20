@@ -18,10 +18,6 @@ before_install:
   - gcloud config set compute/zone asia-south1-a
   - gcloud container clusters get-credentials sifarone-k8s-eod-analysis-cluster-1
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-  #- docker build -t sifarone/test-image -f <path to the test DOCKERFILE> <build context> // Not necessary for our project
-
-#scripts:
-  #- docker run sifarone/test-image <command to run the tests inside in this image> -- --coverage // Not necessary for our project
 
 deploy:
   provide: script
