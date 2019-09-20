@@ -9,15 +9,3 @@ spec:
         requests:
             storage: 4Gi
 
-
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-    name: write-server-persistent-volume-claim
-spec:
-    accessModes:
-      - ReadWriteMany
-    resources:
-        requests:
-            storage: 1Gi

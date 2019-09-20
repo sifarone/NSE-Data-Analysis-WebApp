@@ -12,10 +12,6 @@ spec:
             labels:
                 component: backend-write-server
         spec:
-            volumes:
-              - name: write-server-storage
-                persistentVolumeClaim:
-                  claimName: write-server-persistent-volume-claim
             containers:
               - name: write-server
                 #image: sifarone/eod_analysis:write-server-3.0
@@ -35,9 +31,6 @@ spec:
                     value: '0.0.0.0'
                   - name: WRITE_SERVER_PORT
                     value: '50000'
-                volumeMounts:
-                  - name: write-server-storage
-                    mountPath: ./data
 
             imagePullSecrets:
               - name: regcred
