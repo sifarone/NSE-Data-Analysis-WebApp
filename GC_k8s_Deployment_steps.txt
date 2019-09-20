@@ -63,7 +63,7 @@ Create the Authentication secret encrypyed file to be put into .travis.yaml file
 			3. gem install travis 
 			4. travis login 				------(Use your github login and password)
 			5. --- copy json file into the 'volumed' directory so we can use it in the container and rename it to 'service-account.json' ---
-			6. travis encrypt-file service-account.json -r sifarone/gce-k8s-deployment 	-----( the last term after '-r' is the respository it is linked to)
+			6. travis encrypt-file service-account.json -r sifarone/gce_k8s_deployment 	-----( the last term after '-r' is the respository it is linked to)
 					- creates a ENCRYPTED 'service-account.json.enc' file. And now deleted the original 'service-account.json' file.
 					- this encrypts and binds the encrypted authentication to that particular repository.
 					- Once we run this command, we will get a couple of directions.

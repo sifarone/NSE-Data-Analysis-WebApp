@@ -9,7 +9,7 @@ env:
     - CLOUDSDK_CORE_DISABLE_PROMPTS=1
 
 before_install:
-  - **** ADD THE COMMAND FROM THE TRAVIS ENCRYPT COMMAND ****
+  - openssl aes-256-cbc -K $encrypted_0c35eebf403c_key -iv $encrypted_0c35eebf403c_iv -in service-account.json.enc -out service-account.json -d
   - curl https://sdk.cloud.google.com | bash > /dev/null;
   - source $HOME/google-cloud-sdk/path.bash.inc
   - gcloud components update kubectl
@@ -18,10 +18,10 @@ before_install:
   - gcloud config set compute/zone <zone/location we have selected while setting up the cluster on Google Cloud>
   - gcloud container clusters get-credentials <Name of our k8s cluster on GCloud>
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-  - docker build -t sifarone/test-image -f <path to the test DOCKERFILE> <build context> // Not necessary for our project
+  #- docker build -t sifarone/test-image -f <path to the test DOCKERFILE> <build context> // Not necessary for our project
 
-scripts:
-  - docker run sifarone/test-image <command to run the tests inside in this image> -- --coverage // Not necessary for our project
+#scripts:
+  #- docker run sifarone/test-image <command to run the tests inside in this image> -- --coverage // Not necessary for our project
 
 deploy:
   provide: script
