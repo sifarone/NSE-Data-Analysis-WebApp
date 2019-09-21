@@ -26,7 +26,9 @@ class UserDbAPIs:
                 print('User Authentication status : ', authStatus)
 
             if authStatus:
-                return ({'status': 'pass'})
+                print('documnet : ', document['usertype'])
+                return ({'status': document['usertype']})
+                #return ({'status': 'pass'})
             else:
                 return ({'status': 'fail'})
 

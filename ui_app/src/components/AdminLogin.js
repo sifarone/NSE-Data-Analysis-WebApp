@@ -55,7 +55,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function LoginPage() {
+export default function AdminLogin() {
   const classes = useStyles();
   const dispatch = useDispatch();
 
@@ -70,7 +70,7 @@ export default function LoginPage() {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          EOD Data Analysis : Login
+          Admin Sign in
         </Typography>
           <TextField
             variant="outlined"

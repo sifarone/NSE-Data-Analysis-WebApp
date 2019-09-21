@@ -2,6 +2,7 @@
 const initialState = {
     isLoggedIn: false,
     isAdmin: false,
+    userName: '',
     userSigninStatus: 'fail'
 }
 

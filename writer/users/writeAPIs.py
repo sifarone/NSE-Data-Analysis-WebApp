@@ -17,6 +17,7 @@ async def saveUserInfo(request):
         userParams = {}
         userParams.update({'username': body.get('username')})
         userParams.update({'password': body.get('password')})
+        userParams.update({'usertype': body.get('usertype')})
         print(userParams)
 
         try:
@@ -30,6 +31,7 @@ async def saveUserInfo(request):
                 passwordHash = sha256_crypt.hash(userParams['password'])
                 result = await userCollection.insert_one({
                     'username'  : userParams['username'],
+                    'usertype'  : userParams['usertype'],
                     'password'  : passwordHash
                 })
                 return ({'status': 'pass'})

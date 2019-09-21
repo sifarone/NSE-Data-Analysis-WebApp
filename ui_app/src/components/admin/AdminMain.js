@@ -3,6 +3,7 @@ import InitJobs from './InitJobs';
 import UploadDataToDB from './UploadDataToDB';
 import UploadCSVFilesToServer from './UploadCSVFilesToServer';
 import DeleteDataFromDB from './DeleteDataFromDB';
+import AddUser from './AddUser';
 
 export default class AdminMain extends React.Component {
     constructor(props) {
@@ -23,6 +24,8 @@ export default class AdminMain extends React.Component {
                 <UploadCSVFilesToServer />
                 <hr />
                 <DeleteDataFromDB />
+                <hr />
+                <AddUser />
             </div>
         )
     }

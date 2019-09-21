@@ -71,6 +71,7 @@ const ChartAppMain = () => {
 
   const isLoggedIn  = useSelector((state) => state.userInfo.isLoggedIn);
   const isAdmin     = useSelector((state) => state.userInfo.isAdmin);
+  const userName     = useSelector((state) => state.userInfo.userName);
 
   const cashStockSymbolList   = useSelector((state) => state.chartData.cashStockSymbolList);
   const indexSymbolList       = useSelector((state) => state.chartData.indexSymbolList);
@@ -328,7 +329,7 @@ const ChartAppMain = () => {
           <Typography variant="h6" noWrap>
             EOD Analysis (Beta V1.1)
           </Typography>
-          <Button color="inherit" style={{marginRight: -12, marginLeft: "auto"}} onClick={() => showSignInPage()}>Sign In</Button>
+          <Button color="inherit" style={{marginRight: -12, marginLeft: "auto"}} onClick={() => showSignInPage()}>{isLoggedIn ? userName : 'SignIn'}</Button>
         </Toolbar>
       </AppBar>
 

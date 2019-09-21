@@ -20,20 +20,26 @@ export const userLoginAction = (username, password) => {
         //console.log('=====> status: ', jsonData);
 
         let isLoggedIn = false;
+        let isAdmin = false;
 
-        if (jsonData.status === 'pass') {
+        if (jsonData.status !== 'fail') {
             isLoggedIn = true;
+            isAdmin =  (jsonData.status === 'ADMIN' ? true : false) 
         }
         else {
             isLoggedIn = false;
         }
+
+        console.log('Login isLoggedIn: ', isLoggedIn);
+        console.log('Login isAdmin: ', isAdmin);
 
         dispatch(
             {
                 type: 'USER_LOGIN',
                 payload: {
                     isLoggedIn: isLoggedIn,
-                    isAdmin: true
+                    isAdmin: isAdmin,
+                    userName: username
                 }
             }
         ) 
@@ -53,12 +59,13 @@ export const userLogoutAction = () => {
 }
 
 // User Signin action
-export const userSigninAction = (username, password) => {
+export const userSigninAction = (username, password, usertype) => {
     return async function(dispatch, getState) {
 
         const post_body = {
             username: username,
-            password: password
+            password: password,
+            usertype: usertype
         }
 
         const response =  await fetch(SigninAPI, {
