@@ -1,6 +1,6 @@
 This is a Full Stack Web Application for analyzing End-of-day NSE Data.
 The whole application is Docker container based and Deployed on Google cloud's Kubernetes Engine.
-The system is highly scalable wrt to incopming user requests and is loosely based on microservices architecture.
+The system is highly scalable wrt to incoming user requests and is loosely based on microservices architecture.
 
 Backend:
 - Python (3.7)
