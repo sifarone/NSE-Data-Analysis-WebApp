@@ -15,10 +15,10 @@ Frontend:
 - Metallic UI
 
 Folder Structure:
-- /K8s    : Kubernetes config files
-- /reader : Read Server (Python)
-- /write  : Write Server (Python)
-- /ui_app : Frontend (ReactJs + Redux)
+- /K8s      : Kubernetes config files
+- /reader   : Read Server (Python)
+- /writer   : Write Server (Python)
+- /ui_app   : Frontend (ReactJs + Redux)
 
 
 
