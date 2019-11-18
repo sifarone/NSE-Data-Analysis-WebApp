@@ -14,4 +14,11 @@ Frontend:
 - ChartJS
 - Metallic UI
 
+Folder Structure:
+/K8s    : Kubernetes config files
+/reader : Read Server (Python)
+/write  : Write Server (Python)
+/ui_app : Frontend (ReactJs + Redux)
+
+
 
