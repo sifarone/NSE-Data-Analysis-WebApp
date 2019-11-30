@@ -4,7 +4,7 @@ The system is highly scalable wrt to incoming user requests and is loosely based
 
 Backend:
 - Python (3.7)
-- aiohttp webserver (asynchronous RESTdul API server)
+- aiohttp webserver (asynchronous RESTful API server)
 - MongoDB with Motor APIs (for asynchronous DB access)
 - Redis Server (For server side caching)
 
